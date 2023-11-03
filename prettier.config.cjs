@@ -9,9 +9,9 @@ const config = {
   tabWidth: 2,
   plugins: [
     '@ianvs/prettier-plugin-sort-imports',
-    // 'prettier-plugin-tailwindcss'
+    'prettier-plugin-tailwindcss'
   ],
-  // tailwindConfig: './tailwind.config.js',
+  tailwindConfig: './tailwind.config.js',
   importOrder: [
     '^react$',
     '^[^\\.]+$',
