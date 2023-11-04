@@ -1,9 +1,12 @@
-import { ModeToggle } from "@/components/mode-toggle";
+import { Routes, Route } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div>
-      <ModeToggle />
-    </div>
+    <Routes>
+      <Route>
+        <Route path="/" element={<>Home</>} />
+        <Route path="*" element={<>404</>} />
+      </Route>
+    </Routes>
   );
 }

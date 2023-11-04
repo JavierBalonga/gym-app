@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
       - name: Build
-        run: pnpm run build
+        run: pnpm run build && mv dist/index.html dist/404.html
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
