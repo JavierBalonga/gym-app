@@ -1,12 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
-import { Button } from "./ui/button";
-import { ModeToggle } from "./mode-toggle";
+import { Link, Outlet } from 'react-router-dom';
+
+import { ModeToggle } from './mode-toggle';
+import { Button } from './ui/button';
 
 export default function Layout() {
   return (
     <>
       <header className="flex flex-row justify-center">
-        <div className="grow max-w-4xl flex flex-row justify-between py-4">
+        <div className="flex max-w-4xl grow flex-row justify-between p-4">
           <Link to="/">
             <Button variant="link" className="text-2xl font-bold">
               Gym-App
@@ -16,7 +17,7 @@ export default function Layout() {
           <ModeToggle />
         </div>
       </header>
-      <main className="grow flex flex-col items-center">
+      <main className="flex grow flex-col items-center">
         <Outlet />
       </main>
     </>

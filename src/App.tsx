@@ -1,6 +1,7 @@
-import { Routes, Route } from "react-router-dom";
-import Layout from "@/components/layout";
-import Section from "./components/section";
+import Layout from '@/components/layout';
+import { Route, Routes } from 'react-router-dom';
+
+import Section from './components/section';
 
 export default function Home() {
   return (
