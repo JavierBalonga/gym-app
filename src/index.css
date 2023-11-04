@@ -71,6 +71,10 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground w-full min-h-screen min-h-[100svh] flex flex-col;
+  }
+
+  #root {
+    @apply w-full grow flex flex-col;
   }
 }
