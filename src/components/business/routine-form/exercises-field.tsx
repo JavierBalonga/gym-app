@@ -12,6 +12,7 @@ export default function ExercisesField() {
     swap,
   } = useFieldArray<RoutineFormValues>({
     name: 'exercises',
+    keyName: 'id',
   });
 
   const handleAddExercise = () => {
@@ -31,7 +32,9 @@ export default function ExercisesField() {
         <ExerciseCard
           key={exercise.id}
           exercise={exercise}
+          disableUp={i === 0}
           onMoveUp={() => swap(i, i - 1)}
+          disableDown={i === exercises.length - 1}
           onMoveDown={() => swap(i, i + 1)}
           onEdit={() => {}}
           onRemove={() => remove(i)}
