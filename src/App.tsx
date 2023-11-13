@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import Layout from '@/components/layout';
+import Layout from '@/components/business/layout';
 import { Route, Routes } from 'react-router-dom';
 
 import LoadingPage from './pages/loading';

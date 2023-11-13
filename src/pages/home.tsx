@@ -1,8 +1,7 @@
+import Section from '@/components/business/section';
+import { Button } from '@/components/ui/button';
+import { useStore } from '@/contexts/store';
 import { Link } from 'react-router-dom';
-
-import Section from '../components/section';
-import { Button } from '../components/ui/button';
-import { useStore } from '../contexts/store';
 
 export default function HomePage() {
   const routines = useStore((s) => s.routines);

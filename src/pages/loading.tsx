@@ -1,5 +1,5 @@
-import Section from '../components/section';
-import { Skeleton } from '../components/ui/skeleton';
+import Section from '@/components/business/section';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function LoadingPage() {
   return (

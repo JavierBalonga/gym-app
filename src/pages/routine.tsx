@@ -1,9 +1,8 @@
+import RoutineForm from '@/components/business/routine-form/routine-form';
+import Section from '@/components/business/section';
+import { Button } from '@/components/ui/button';
 import { ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
-import RoutineForm from '../components/routine-form';
-import Section from '../components/section';
-import { Button } from '../components/ui/button';
 
 export default function CreateRoutinePage() {
   const navigate = useNavigate();

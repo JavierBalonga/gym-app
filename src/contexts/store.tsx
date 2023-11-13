@@ -1,7 +1,6 @@
+import { Routine } from '@/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-import { Routine } from '../types';
 
 export interface Store {
   routines: Routine[];

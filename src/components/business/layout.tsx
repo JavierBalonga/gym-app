@@ -1,7 +1,7 @@
+import { Button } from '@/components/ui/button';
 import { Link, Outlet } from 'react-router-dom';
 
 import { ModeToggle } from './mode-toggle';
-import { Button } from './ui/button';
 
 export default function Layout() {
   return (
