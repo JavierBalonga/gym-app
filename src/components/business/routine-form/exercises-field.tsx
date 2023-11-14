@@ -1,30 +1,25 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog';
+import { DialogTitle } from '@radix-ui/react-dialog';
 import { useFieldArray } from 'react-hook-form';
 
+import ExcerciseForm from './excercise-form';
 import ExerciseCard from './exercise-card';
 import { RoutineFormValues } from './routineform-schema';
 
 export default function ExercisesField() {
+  const [createOpen, setCreateOpen] = useState(false);
+
   const {
     fields: exercises,
-    append,
     remove,
     swap,
+    append,
   } = useFieldArray<RoutineFormValues>({
     name: 'exercises',
     keyName: 'id',
   });
-
-  const handleAddExercise = () => {
-    append({
-      id: crypto.randomUUID(),
-      name: '',
-      sets: 0,
-      reps: 0,
-      weight: 0,
-      comment: '',
-    });
-  };
 
   return (
     <>
@@ -40,9 +35,22 @@ export default function ExercisesField() {
           onRemove={() => remove(i)}
         />
       ))}
-      <Button type="button" onClick={handleAddExercise}>
-        Agregar Ejercicio
-      </Button>
+      <Dialog onOpenChange={setCreateOpen} open={createOpen}>
+        <DialogTrigger asChild>
+          <Button type="button">Agregar Ejercicio</Button>
+        </DialogTrigger>
+        <DialogContent className="h-screen max-w-none sm:h-fit sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="text-3xl font-bold">Nuevo Ejercicio</DialogTitle>
+          </DialogHeader>
+          <ExcerciseForm
+            onSubmit={(excercise) => {
+              append(excercise);
+              setCreateOpen(false);
+            }}
+          />
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

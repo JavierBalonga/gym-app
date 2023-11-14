@@ -40,7 +40,7 @@ export default function ExerciseCard({
         </Button>
       </div>
 
-      <span>{exercise.id}</span>
+      <h5>{exercise.name}</h5>
       <div className="grow" />
       <div className="flex flex-col items-center gap-2">
         <Button type="button" variant="outline" size="icon" onClick={onEdit}>
