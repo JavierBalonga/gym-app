@@ -14,22 +14,27 @@ import { useForm } from 'react-hook-form';
 import ExercisesField from './exercises-field';
 import { routineformSchema, RoutineFormValues } from './routineform-schema';
 
-export default function RoutineForm() {
+export interface RoutineFormProps {
+  defaultValues?: RoutineFormValues;
+  onSubmit?: (values: RoutineFormValues) => void;
+}
+
+export default function RoutineForm({ defaultValues, onSubmit }: RoutineFormProps) {
   const form = useForm<RoutineFormValues>({
     resolver: zodResolver(routineformSchema),
-    defaultValues: {
+    defaultValues: defaultValues || {
+      id: crypto.randomUUID(),
       name: '',
       exercises: [],
     },
   });
 
-  function onSubmit(values: RoutineFormValues) {
-    console.log(values);
-  }
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-8">
+      <form
+        onSubmit={form.handleSubmit((routine) => onSubmit?.(routine))}
+        className="flex grow flex-col gap-4"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -44,7 +49,8 @@ export default function RoutineForm() {
           )}
         />
         <ExercisesField />
-        <Button type="submit">Submit</Button>
+        <div className="grow" />
+        <Button type="submit">Guardar</Button>
       </form>
     </Form>
   );

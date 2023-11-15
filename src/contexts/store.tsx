@@ -6,6 +6,7 @@ export interface Store {
   routines: Routine[];
   addRoutine: (routine: Routine) => void;
   removeRoutine: (id: string) => void;
+  updateRoutine: (routine: Routine) => void;
 }
 
 export const useStore = create(
@@ -21,6 +22,11 @@ export const useStore = create(
         set((state) => {
           return { routines: state.routines.filter((r) => r.id !== id) };
         });
+      },
+      updateRoutine: (routine: Routine) => {
+        set((state) => ({
+          routines: state.routines.map((r) => (r.id === routine.id ? routine : r)),
+        }));
       },
     }),
     { name: 'gym-storage' },

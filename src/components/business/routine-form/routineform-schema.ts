@@ -3,6 +3,8 @@ import * as z from 'zod';
 import { excerciseSchema } from './excercise-schema';
 
 export const routineformSchema = z.object({
+  id: z.string().uuid(),
+
   name: z
     .string()
     .min(1, {

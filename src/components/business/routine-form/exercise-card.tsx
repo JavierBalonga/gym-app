@@ -24,7 +24,7 @@ export default function ExerciseCard({
   onRemove,
 }: ExerciseCardProps) {
   return (
-    <Card className="flex flex-row items-center justify-between gap-4 p-4">
+    <Card className="flex flex-row items-center gap-4 p-4">
       <div className="flex flex-col items-center gap-2">
         <Button type="button" variant="ghost" size="icon" onClick={onMoveUp} disabled={disableUp}>
           <ChevronUp />
@@ -39,9 +39,12 @@ export default function ExerciseCard({
           <ChevronDown />
         </Button>
       </div>
-
-      <h5>{exercise.name}</h5>
-      <div className="grow" />
+      <div className="flex grow flex-col gap-2">
+        <h5 className="text-xl font-bold">{exercise.name}</h5>
+        <p className="text-foreground/50">
+          {exercise.sets} x {exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
+        </p>
+      </div>
       <div className="flex flex-col items-center gap-2">
         <Button type="button" variant="outline" size="icon" onClick={onEdit}>
           <Pencil />

@@ -6,7 +6,8 @@ import LoadingPage from './pages/loading';
 
 const HomePage = lazy(() => import('./pages/home'));
 const NotFoundPage = lazy(() => import('./pages/not-found'));
-const CreateRoutinePage = lazy(() => import('./pages/routine'));
+const CreateRoutinePage = lazy(() => import('./pages/routine-create'));
+const EditRoutinePage = lazy(() => import('./pages/routine-edit'));
 
 export default function App() {
   return (
@@ -25,6 +26,14 @@ export default function App() {
           element={
             <Suspense fallback={<LoadingPage />}>
               <CreateRoutinePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/routine/:id"
+          element={
+            <Suspense fallback={<LoadingPage />}>
+              <EditRoutinePage />
             </Suspense>
           }
         />
