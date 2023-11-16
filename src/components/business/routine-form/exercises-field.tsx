@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog';
-import { DialogTitle } from '@radix-ui/react-dialog';
-import { set, useFieldArray, useFormContext } from 'react-hook-form';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { useFieldArray } from 'react-hook-form';
 
 import ExcerciseForm from './excercise-form';
 import ExerciseCard from './exercise-card';
