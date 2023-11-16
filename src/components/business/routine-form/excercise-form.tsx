@@ -16,13 +16,14 @@ import { Textarea } from '../../ui/textarea';
 import { ExcerciseFormValues, excerciseSchema } from './excercise-schema';
 
 export interface ExcerciseFormProps {
+  defaultValues?: ExcerciseFormValues;
   onSubmit?: (values: ExcerciseFormValues) => void;
 }
 
-export default function ExcerciseForm({ onSubmit }: ExcerciseFormProps) {
+export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseFormProps) {
   const form = useForm<ExcerciseFormValues>({
     resolver: zodResolver(excerciseSchema),
-    defaultValues: {
+    defaultValues: defaultValues || {
       id: crypto.randomUUID(),
       name: '',
       sets: 0,
