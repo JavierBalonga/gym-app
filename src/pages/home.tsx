@@ -13,9 +13,7 @@ export default function HomePage() {
     <Section className="gap-8">
       {routines.length === 0 ? (
         <div className="flex grow flex-col items-center justify-center gap-4">
-          <div className="flex h-64 w-full items-center justify-center rounded-lg border border-dashed border-foreground">
-            <p>¡Crea tu primera rutina!</p>
-          </div>
+          <img className="h-64 w-full" src="/empty-routines.svg" alt="Routines Empty State" />
           <Button className="w-full" asChild>
             <Link to="/routine">Crear Nueva Rutina</Link>
           </Button>
