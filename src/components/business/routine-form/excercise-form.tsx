@@ -35,7 +35,7 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
 
   return (
     <Form {...form}>
-      <div className="flex flex-col gap-4 py-4">
+      <div className="flex grow flex-col gap-4">
         <FormField
           control={form.control}
           name="name"
@@ -62,6 +62,7 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
                   size="icon"
                   type="button"
                   onClick={() => field.onChange(Math.max((Number(field.value) ?? 0) - 1, 0))}
+                  tabIndex={-1}
                 >
                   <Minus />
                 </Button>
@@ -73,6 +74,7 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
                   size="icon"
                   type="button"
                   onClick={() => field.onChange((Number(field.value) ?? 0) + 1)}
+                  tabIndex={-1}
                 >
                   <Plus />
                 </Button>
@@ -94,6 +96,7 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
                   size="icon"
                   type="button"
                   onClick={() => field.onChange(Math.max((Number(field.value) ?? 0) - 1, 0))}
+                  tabIndex={-1}
                 >
                   <Minus />
                 </Button>
@@ -105,6 +108,7 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
                   size="icon"
                   type="button"
                   onClick={() => field.onChange((Number(field.value) ?? 0) + 1)}
+                  tabIndex={-1}
                 >
                   <Plus />
                 </Button>
@@ -126,6 +130,7 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
                   size="icon"
                   type="button"
                   onClick={() => field.onChange(Math.max((Number(field.value) ?? 0) - 1, 0))}
+                  tabIndex={-1}
                 >
                   <Minus />
                 </Button>
@@ -137,6 +142,7 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
                   size="icon"
                   type="button"
                   onClick={() => field.onChange((Number(field.value) ?? 0) + 1)}
+                  tabIndex={-1}
                 >
                   <Plus />
                 </Button>
@@ -158,7 +164,14 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
             </FormItem>
           )}
         />
-        <Button type="button" onClick={() => onSubmit?.(form.getValues())}>
+        <div className="grow" />
+        <Button
+          type="button"
+          onClick={() => {
+            const values = form.getValues();
+            onSubmit?.(values);
+          }}
+        >
           Guardar
         </Button>
       </div>

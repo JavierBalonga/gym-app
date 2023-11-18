@@ -42,7 +42,7 @@ export default function RoutineForm({ defaultValues, onSubmit }: RoutineFormProp
             <FormItem>
               <FormLabel>Nombre</FormLabel>
               <FormControl>
-                <Input placeholder="Mi Rutina..." {...field} />
+                <Input placeholder="Mi Rutina..." {...field} autoComplete="routine-name" />
               </FormControl>
               <FormMessage />
             </FormItem>

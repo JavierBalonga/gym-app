@@ -14,7 +14,7 @@ export const routineformSchema = z.object({
       message: 'El nombre debe tener como máximo 50 caracteres.',
     }),
 
-  exercises: z.array(excerciseSchema).min(1, 'Debe haber al menos un ejercicio.'),
+  exercises: z.array(excerciseSchema),
 });
 
 export type RoutineFormValues = z.infer<typeof routineformSchema>;

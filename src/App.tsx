@@ -5,9 +5,9 @@ import { Route, Routes } from 'react-router-dom';
 import LoadingPage from './pages/loading';
 
 const HomePage = lazy(() => import('./pages/home'));
+const DeletePage = lazy(() => import('./pages/home/delete'));
+const CreatePage = lazy(() => import('./pages/home/create'));
 const NotFoundPage = lazy(() => import('./pages/not-found'));
-const CreateRoutinePage = lazy(() => import('./pages/routine-create'));
-const EditRoutinePage = lazy(() => import('./pages/routine-edit'));
 
 export default function App() {
   return (
@@ -20,23 +20,24 @@ export default function App() {
               <HomePage />
             </Suspense>
           }
-        />
-        <Route
-          path="/routine"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <CreateRoutinePage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/routine/:id"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <EditRoutinePage />
-            </Suspense>
-          }
-        />
+        >
+          <Route
+            path="/create"
+            element={
+              <Suspense fallback={<LoadingPage />}>
+                <CreatePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/delete/:id"
+            element={
+              <Suspense fallback={<LoadingPage />}>
+                <DeletePage />
+              </Suspense>
+            }
+          />
+        </Route>
         <Route
           path="*"
           element={
