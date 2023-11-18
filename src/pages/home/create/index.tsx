@@ -1,16 +1,5 @@
-import { useRef, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-} from '@/components/ui/sheet';
+import { useState } from 'react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { useNavigate } from 'react-router-dom';
 
 import RoutineForm from '../../../components/business/routine-form/routine-form';
@@ -36,7 +25,7 @@ export default function CreatePage() {
 
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
-      <SheetContent variant="preserve">
+      <SheetContent>
         <SheetHeader>
           <SheetTitle>Nueva Rutina</SheetTitle>
         </SheetHeader>
