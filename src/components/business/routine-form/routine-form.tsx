@@ -1,9 +1,9 @@
+import TextFormField from '@/components/form-fields/text-form-field';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import TextFormField from '../../form-fields/text-form-field';
 import ExercisesField from './exercises-field';
 import { routineformSchema, RoutineFormValues } from './schemas';
 

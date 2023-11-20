@@ -1,10 +1,9 @@
 import { useState } from 'react';
+import RoutineForm from '@/components/business/routine-form/routine-form';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { useStore } from '@/contexts/store';
+import { Routine } from '@/types';
 import { useNavigate } from 'react-router-dom';
-
-import RoutineForm from '../../../components/business/routine-form/routine-form';
-import { useStore } from '../../../contexts/store';
-import { Routine } from '../../../types';
 
 export default function CreatePage() {
   const navigate = useNavigate();

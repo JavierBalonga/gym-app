@@ -1,9 +1,8 @@
+import { Button } from '@/components/ui/button';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { Minus, Plus } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
-
-import { Button } from '../ui/button';
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
-import { Input } from '../ui/input';
 
 export interface NumberFormFieldProps {
   name: string;

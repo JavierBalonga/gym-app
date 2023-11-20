@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import ArrayFormField from '@/components/form-fields/array-form-field';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { ChevronDown, ChevronUp, Pencil, Trash2 } from 'lucide-react';
 
-import ArrayFormField from '../../form-fields/array-form-field';
-import { Card } from '../../ui/card';
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '../../ui/sheet';
 import ExcerciseForm from './excercise-form';
 import { RoutineFormValues } from './schemas';
 

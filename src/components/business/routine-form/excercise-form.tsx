@@ -1,11 +1,11 @@
+import NumberFormField from '@/components/form-fields/number-form-field';
+import TextFormField from '@/components/form-fields/text-form-field';
+import TextareaFormField from '@/components/form-fields/textarea-form-field';
+import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import NumberFormField from '../../form-fields/number-form-field';
-import TextFormField from '../../form-fields/text-form-field';
-import TextareaFormField from '../../form-fields/textarea-form-field';
-import { Button } from '../../ui/button';
 import { ExcerciseFormValues, excerciseSchema } from './schemas';
 
 export interface ExcerciseFormProps {
