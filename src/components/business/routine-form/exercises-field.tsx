@@ -43,7 +43,7 @@ export default function ExercisesField() {
               <div className="flex grow flex-col gap-2">
                 <h5 className="text-xl font-bold">{exercise.name}</h5>
                 <p className="text-foreground/50">
-                  {exercise.sets} x {exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
+                  {exercise.sets}x{exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
                 </p>
               </div>
               <div className="flex flex-col items-center gap-2">

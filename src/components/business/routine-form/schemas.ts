@@ -26,7 +26,7 @@ export const excerciseSchema = z.object({
     })
     .min(1, 'Debe haber al menos una repetición.'),
 
-  weight: z.number().positive({
+  weight: z.number().min(0, {
     message: 'El peso debe ser un número positivo.',
   }),
 
