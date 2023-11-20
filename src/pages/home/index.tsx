@@ -29,7 +29,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex flex-col items-center gap-2">
                   <Button type="button" variant="outline" size="icon" asChild>
-                    <Link to={`/routine/${routine.id}`}>
+                    <Link to={`/edit/${routine.id}`}>
                       <Pencil />
                     </Link>
                   </Button>
