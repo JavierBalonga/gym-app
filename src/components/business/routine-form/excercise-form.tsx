@@ -1,19 +1,12 @@
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Minus, Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
+import NumberFormField from '../../form-fields/number-form-field';
+import TextFormField from '../../form-fields/text-form-field';
+import TextareaFormField from '../../form-fields/textarea-form-field';
 import { Button } from '../../ui/button';
-import { Textarea } from '../../ui/textarea';
-import { ExcerciseFormValues, excerciseSchema } from './excercise-schema';
+import { ExcerciseFormValues, excerciseSchema } from './schemas';
 
 export interface ExcerciseFormProps {
   defaultValues?: ExcerciseFormValues;
@@ -33,148 +26,27 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
     },
   });
 
+  const handleSubmit = form.handleSubmit((values) => {
+    onSubmit?.(values);
+  });
+
   return (
     <Form {...form}>
-      <div className="flex grow flex-col gap-4">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre</FormLabel>
-              <FormControl>
-                <Input placeholder="Mi Ejercicio..." {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="sets"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex flex-row items-center gap-2">
-                <FormLabel>Series</FormLabel>
-                <div className="grow" />
-                <Button
-                  variant="outline"
-                  size="icon"
-                  type="button"
-                  onClick={() => field.onChange(Math.max((Number(field.value) ?? 0) - 1, 0))}
-                  tabIndex={-1}
-                >
-                  <Minus />
-                </Button>
-                <FormControl>
-                  <Input className="w-10 text-center" type="number" {...field} />
-                </FormControl>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  type="button"
-                  onClick={() => field.onChange((Number(field.value) ?? 0) + 1)}
-                  tabIndex={-1}
-                >
-                  <Plus />
-                </Button>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="reps"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex flex-row items-center gap-2">
-                <FormLabel>Repeticiones</FormLabel>
-                <div className="grow" />
-                <Button
-                  variant="outline"
-                  size="icon"
-                  type="button"
-                  onClick={() => field.onChange(Math.max((Number(field.value) ?? 0) - 1, 0))}
-                  tabIndex={-1}
-                >
-                  <Minus />
-                </Button>
-                <FormControl>
-                  <Input className="w-10 text-center" type="number" {...field} />
-                </FormControl>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  type="button"
-                  onClick={() => field.onChange((Number(field.value) ?? 0) + 1)}
-                  tabIndex={-1}
-                >
-                  <Plus />
-                </Button>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="weight"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex flex-row items-center gap-2">
-                <FormLabel>Peso</FormLabel>
-                <div className="grow" />
-                <Button
-                  variant="outline"
-                  size="icon"
-                  type="button"
-                  onClick={() => field.onChange(Math.max((Number(field.value) ?? 0) - 1, 0))}
-                  tabIndex={-1}
-                >
-                  <Minus />
-                </Button>
-                <FormControl>
-                  <Input className="w-10 text-center" type="number" {...field} />
-                </FormControl>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  type="button"
-                  onClick={() => field.onChange((Number(field.value) ?? 0) + 1)}
-                  tabIndex={-1}
-                >
-                  <Plus />
-                </Button>
-              </div>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="comment"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Comentario</FormLabel>
-              <FormControl>
-                <Textarea {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      <form
+        className="flex grow flex-col gap-4"
+        onSubmit={(e) => {
+          e.stopPropagation();
+          handleSubmit(e);
+        }}
+      >
+        <TextFormField name="name" label="Nombre" placeholder="Mi Ejercicio..." />
+        <NumberFormField name="sets" label="Series" />
+        <NumberFormField name="reps" label="Repeticiones" />
+        <NumberFormField name="weight" label="Peso" />
+        <TextareaFormField name="comment" label="Comentario" />
         <div className="grow" />
-        <Button
-          type="button"
-          onClick={() => {
-            const values = form.getValues();
-            onSubmit?.(values);
-          }}
-        >
-          Guardar
-        </Button>
-      </div>
+        <Button type="submit">Guardar</Button>
+      </form>
     </Form>
   );
 }

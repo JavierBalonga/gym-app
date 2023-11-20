@@ -11,8 +11,9 @@ import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
+import TextFormField from '../../form-fields/text-form-field';
 import ExercisesField from './exercises-field';
-import { routineformSchema, RoutineFormValues } from './routineform-schema';
+import { routineformSchema, RoutineFormValues } from './schemas';
 
 export interface RoutineFormProps {
   defaultValues?: RoutineFormValues;
@@ -32,22 +33,10 @@ export default function RoutineForm({ defaultValues, onSubmit }: RoutineFormProp
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit((routine) => onSubmit?.(routine))}
         className="flex grow flex-col gap-4"
+        onSubmit={form.handleSubmit((routine) => onSubmit?.(routine))}
       >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre</FormLabel>
-              <FormControl>
-                <Input placeholder="Mi Rutina..." {...field} autoComplete="routine-name" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <TextFormField name="name" label="Nombre" placeholder="Mi Rutina..." />
         <ExercisesField />
         <div className="grow" />
         <Button type="submit">Guardar</Button>

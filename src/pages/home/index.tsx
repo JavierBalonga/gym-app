@@ -5,7 +5,7 @@ import { useStore } from '@/contexts/store';
 import { Pencil, Trash2 } from 'lucide-react';
 import { Link, Outlet } from 'react-router-dom';
 
-import emptyRoutinesIllustration from '@public/empty-routines.svg';
+import emptyRoutinesIllustration from '@/assets/empty-routines.svg';
 
 export default function HomePage() {
   const routines = useStore((s) => s.routines);
