@@ -1,10 +1,14 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Routine } from '@/types';
 import { Pencil, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 
 export interface RoutineCardProps {
   routine: Routine;
@@ -47,7 +51,7 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
                 </Link>
               </Button>
               <Button type="button" variant="default" className="w-full grow" asChild>
-                <Link to={`/run/${routine.id}`}>Empezar Rutina</Link>
+                <Link to={`/run/${routine.id}/1`}>Empezar Rutina</Link>
               </Button>
             </div>
           </AccordionContent>
