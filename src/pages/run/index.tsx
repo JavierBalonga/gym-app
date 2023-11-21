@@ -64,7 +64,7 @@ export default function RunPage() {
         </p>
       </div>
       <hr />
-      <div className="flex flex-col gap-2">
+      <div className="flex h-0 grow flex-col gap-2 overflow-auto px-4">
         {series.map((serie, i) => (
           <Card key={i} className="flex flex-row items-center gap-3 py-2 pl-6 pr-2">
             <span>{i + 1} Serie</span>
@@ -88,7 +88,6 @@ export default function RunPage() {
           {remainingSets === 1 ? 'Falta 1 Serie' : `Faltan ${remainingSets} Series`}
         </p>
       )}
-      <div className="grow" />
       <div className="grid grid-cols-2">
         <span className="text-center">Peso</span>
         <span className="text-center">Repeticiones</span>

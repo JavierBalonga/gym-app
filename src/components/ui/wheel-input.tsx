@@ -28,17 +28,23 @@ export function WheelInput<TValue extends string | number = string | number>({
   onChange,
 }: WheelInputProps<TValue>) {
   const [delta, setDelta] = useState(0);
+  const [itemValues, setItemValues] = useState<(string | number)[]>([]);
 
-  const itemValues = useRef<(string | number)[]>([]);
   const startDelta = useRef<number | null>(null);
 
   useEffect(() => {
     if (value === undefined) return;
-    setDelta(-value * ITEM_HEIGHT);
-  }, [value]);
+    const index = itemValues.indexOf(value);
+    if (index === -1) return;
+    setDelta(-index * ITEM_HEIGHT);
+  }, [value, itemValues]);
 
   const handleRegisterItem = (index: number, value: string | number) => {
-    itemValues.current[index] = value;
+    setItemValues((itemValues) => {
+      const newItemValues = [...itemValues];
+      newItemValues[index] = value;
+      return newItemValues;
+    });
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLUListElement>) => {
@@ -55,7 +61,7 @@ export function WheelInput<TValue extends string | number = string | number>({
     startDelta.current = null;
     const newIndex = -Math.round(delta / ITEM_HEIGHT);
     setDelta(-newIndex * ITEM_HEIGHT);
-    const newValue = itemValues.current[newIndex];
+    const newValue = itemValues[newIndex];
     onChange?.(newValue as TValue);
   };
 
@@ -123,7 +129,7 @@ export function WheelInputItem({ value, className, children, ...props }: WheelIn
   useEffect(() => {
     if (index === null) return;
     registerItem(index, value);
-  }, [value]);
+  }, [index, value]);
 
   useEffect(() => {
     if (ref === null || index === null) return;
