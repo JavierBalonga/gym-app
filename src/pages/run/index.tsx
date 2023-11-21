@@ -1,12 +1,11 @@
 import { useMemo, useState } from 'react';
 import Section from '@/components/business/section';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { WheelInput, WheelInputContent, WheelInputItem } from '@/components/ui/wheel-input';
 import { useStore } from '@/contexts/store';
 import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-
-import { Button } from '../../components/ui/button';
-import { Card } from '../../components/ui/card';
-import { WheelInput, WheelInputContent, WheelInputItem } from '../../components/ui/wheel-input';
 
 export default function RunPage() {
   const params = useParams<{ id: string; exerciseIndex: string }>();
