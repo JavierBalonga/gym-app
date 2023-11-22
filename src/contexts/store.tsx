@@ -2,6 +2,8 @@ import { Routine } from '@/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+import migrate from './migrations';
+
 export interface Store {
   routines: Routine[];
   addRoutine: (routine: Routine) => void;
@@ -29,6 +31,10 @@ export const useStore = create(
         }));
       },
     }),
-    { name: 'gym-storage' },
+    {
+      name: 'gym-storage',
+      version: 1,
+      migrate: migrate,
+    },
   ),
 );

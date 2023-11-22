@@ -1,3 +1,9 @@
+export interface Routine {
+  id: string;
+  name: string;
+  exercises: Exercise[];
+}
+
 export interface Exercise {
   id: string;
   name: string;
@@ -5,10 +11,15 @@ export interface Exercise {
   reps: number;
   weight: number;
   comment: string;
+  executions: ExerciseExecution[];
 }
 
-export interface Routine {
+export interface ExerciseExecution {
   id: string;
-  name: string;
-  exercises: Exercise[];
+  sets: SetExecution[];
+}
+
+export interface SetExecution {
+  reps: number;
+  weight: number;
 }

@@ -23,6 +23,7 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
       reps: 0,
       weight: 0,
       comment: '',
+      executions: [],
     },
   });
 
