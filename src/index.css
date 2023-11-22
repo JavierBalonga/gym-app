@@ -86,7 +86,7 @@
   }
 
   body {
-    @apply flex !min-h-[100svh] min-h-screen w-full flex-row bg-background text-foreground overflow-x-hidden;
+    @apply flex !min-h-[100svh] min-h-screen w-full flex-row bg-background text-foreground overflow-x-hidden overscroll-contain;
   }
 
   #root {
