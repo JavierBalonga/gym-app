@@ -31,7 +31,7 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
           <AccordionContent className="flex flex-col gap-1">
             <ul className="flex list-decimal flex-col gap-1 pl-6">
               {routine.exercises.map((exercise) => (
-                <li>
+                <li key={exercise.id}>
                   <h5 className="text-lg">{exercise.name}</h5>
                   <p className="text-foreground/50">
                     {exercise.sets}x{exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
