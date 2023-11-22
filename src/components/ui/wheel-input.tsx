@@ -49,6 +49,7 @@ export function WheelInput<TValue extends string | number = string | number>({
 
   const handleTouchStart = (e: React.TouchEvent<HTMLUListElement>) => {
     startDelta.current = delta + e.touches[0].clientY;
+    document.body.classList.add('overscroll-y-none');
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLUListElement>) => {
@@ -63,6 +64,7 @@ export function WheelInput<TValue extends string | number = string | number>({
     setDelta(-newIndex * ITEM_HEIGHT);
     const newValue = itemValues[newIndex];
     onChange?.(newValue as TValue);
+    document.body.classList.remove('overscroll-y-none');
   };
 
   return (
