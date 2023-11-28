@@ -13,12 +13,12 @@ export default function ExercisesField() {
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
   return (
-    <ArrayFormField<RoutineFormValues>
+    <ArrayFormField<RoutineFormValues, 'exercises'>
       name="exercises"
       keyName="id"
-      render={({ fields, append, swap, update, remove }) => (
+      render={({ fields: exercises, append, swap, update, remove }) => (
         <>
-          {fields.map((exercise, i) => (
+          {exercises.map((exercise, i) => (
             <Card key={exercise.id} className="flex flex-row items-center gap-4 p-4">
               <div className="flex flex-col items-center gap-2">
                 <Button
@@ -35,7 +35,7 @@ export default function ExercisesField() {
                   variant="ghost"
                   size="icon"
                   onClick={() => swap(i, i + 1)}
-                  disabled={i === fields.length - 1}
+                  disabled={i === exercises.length - 1}
                 >
                   <ChevronDown />
                 </Button>
@@ -83,7 +83,7 @@ export default function ExercisesField() {
               )}
               {editIndex !== null && (
                 <ExcerciseForm
-                  defaultValues={fields[editIndex]}
+                  defaultValues={exercises[editIndex]}
                   onSubmit={(excercise) => {
                     update(editIndex, excercise);
                     setEditIndex(null);

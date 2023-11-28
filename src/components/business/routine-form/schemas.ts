@@ -33,29 +33,6 @@ export const excerciseSchema = z.object({
   comment: z.string().max(512, {
     message: 'El comentario debe tener como máximo 50 caracteres.',
   }),
-
-  executions: z.array(
-    z.object({
-      id: z.string().uuid(),
-
-      sets: z.array(
-        z.object({
-          id: z.string().uuid(),
-
-          reps: z
-            .number()
-            .int({
-              message: 'El número de repeticiones debe ser un número entero.',
-            })
-            .min(1, 'Debe haber al menos una repetición.'),
-
-          weight: z.number().min(0, {
-            message: 'El peso debe ser un número positivo.',
-          }),
-        }),
-      ),
-    }),
-  ),
 });
 
 export type ExcerciseFormValues = z.infer<typeof excerciseSchema>;
@@ -73,6 +50,37 @@ export const routineformSchema = z.object({
     }),
 
   exercises: z.array(excerciseSchema),
+
+  executions: z.array(
+    z.object({
+      id: z.string().uuid(),
+
+      exercises: z.array(
+        z.object({
+          id: z.string().uuid(),
+
+          exerciseId: z.string().uuid(),
+
+          sets: z.array(
+            z.object({
+              id: z.string().uuid(),
+
+              reps: z
+                .number()
+                .int({
+                  message: 'El número de repeticiones debe ser un número entero.',
+                })
+                .min(1, 'Debe haber al menos una repetición.'),
+
+              weight: z.number().min(0, {
+                message: 'El peso debe ser un número positivo.',
+              }),
+            }),
+          ),
+        }),
+      ),
+    }),
+  ),
 });
 
 export type RoutineFormValues = z.infer<typeof routineformSchema>;

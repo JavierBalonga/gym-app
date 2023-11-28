@@ -1,17 +1,13 @@
 import { ReactElement } from 'react';
-import {
-  FieldArrayPath,
-  FieldValues,
-  useFieldArray,
-  UseFieldArrayProps,
-  UseFieldArrayReturn,
-} from 'react-hook-form';
+import { FieldArrayPath, FieldValues, useFieldArray, UseFieldArrayReturn } from 'react-hook-form';
 
 export interface ArrayFormFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TFieldArrayName extends FieldArrayPath<TFieldValues> = FieldArrayPath<TFieldValues>,
   TKeyName extends string = 'id',
-> extends UseFieldArrayProps<TFieldValues, TFieldArrayName, TKeyName> {
+> {
+  name: TFieldArrayName;
+  keyName: TKeyName;
   render: (
     renderProps: UseFieldArrayReturn<TFieldValues, TFieldArrayName, TKeyName>,
   ) => ReactElement;

@@ -5,13 +5,12 @@ import { Card } from '@/components/ui/card';
 import { WheelInput, WheelInputContent, WheelInputItem } from '@/components/ui/wheel-input';
 import { useStore } from '@/contexts/store';
 import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 import { ExerciseExecution, RoutineExecution } from '../../types';
 
 export default function ExecutePage() {
   const params = useParams<{ routineId: string; exerciseId: string }>();
-  const navigate = useNavigate();
   const routines = useStore((s) => s.routines);
   const actualRoutineExecutionId = useStore((s) => s.actualRoutineExecutionId);
   const setActualRoutineExecutionId = useStore((s) => s.setActualRoutineExecutionId);
@@ -25,7 +24,7 @@ export default function ExecutePage() {
 
   const routine = useMemo(() => {
     const routine = routines.find((r) => r.id === params.routineId);
-    if (!routine) return navigate('..');
+    if (!routine) return null;
     return routine;
   }, [params.routineId, routines]);
 
@@ -109,7 +108,7 @@ export default function ExecutePage() {
     removeSetExecution(routine.id, routineExecution.id, exerciseExecution.id, setId);
   };
 
-  if (!routine || !exercise) return null;
+  if (!routine || !exercise) return <Navigate to=".." />;
 
   return (
     <Section className="gap-3">
