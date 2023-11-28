@@ -2,6 +2,7 @@ export interface Routine {
   id: string;
   name: string;
   exercises: Exercise[];
+  executions: RoutineExecution[];
 }
 
 export interface Exercise {
@@ -11,15 +12,21 @@ export interface Exercise {
   reps: number;
   weight: number;
   comment: string;
-  executions: ExerciseExecution[];
+}
+
+export interface RoutineExecution {
+  id: string;
+  exercises: ExerciseExecution[];
 }
 
 export interface ExerciseExecution {
   id: string;
+  exerciseId: string;
   sets: SetExecution[];
 }
 
 export interface SetExecution {
+  id: string;
   reps: number;
   weight: number;
 }

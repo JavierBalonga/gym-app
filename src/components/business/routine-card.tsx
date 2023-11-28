@@ -51,7 +51,7 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
                 </Link>
               </Button>
               <Button type="button" variant="default" className="w-full grow" asChild>
-                <Link to={`/run/${routine.id}/1`}>Empezar Rutina</Link>
+                <Link to={`/execute/${routine.id}/${routine.exercises[0].id}`}>Empezar Rutina</Link>
               </Button>
             </div>
           </AccordionContent>

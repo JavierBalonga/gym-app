@@ -8,7 +8,7 @@ const HomePage = lazy(() => import('./pages/home'));
 const CreatePage = lazy(() => import('./pages/home/create'));
 const EditPage = lazy(() => import('./pages/home/edit'));
 const DeletePage = lazy(() => import('./pages/home/delete'));
-const RunPage = lazy(() => import('./pages/run'));
+const ExecutePage = lazy(() => import('./pages/execute'));
 const NotFoundPage = lazy(() => import('./pages/not-found'));
 
 export default function App() {
@@ -49,10 +49,10 @@ export default function App() {
           />
         </Route>
         <Route
-          path="/run/:id/:exerciseIndex"
+          path="/execute/:routineId/:exerciseId"
           element={
             <Suspense fallback={<LoadingPage />}>
-              <RunPage />
+              <ExecutePage />
             </Suspense>
           }
         />
