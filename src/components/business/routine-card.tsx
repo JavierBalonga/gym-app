@@ -50,9 +50,13 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
                   <Pencil />
                 </Link>
               </Button>
-              <Button type="button" variant="default" className="w-full grow" asChild>
-                <Link to={`/execute/${routine.id}/${routine.exercises[0].id}`}>Empezar Rutina</Link>
-              </Button>
+              {Boolean(routine.exercises.length) && (
+                <Button type="button" variant="default" className="w-full grow" asChild>
+                  <Link to={`/execute/${routine.id}/${routine.exercises[0].id}`}>
+                    Empezar Rutina
+                  </Link>
+                </Button>
+              )}
             </div>
           </AccordionContent>
         </AccordionItem>
