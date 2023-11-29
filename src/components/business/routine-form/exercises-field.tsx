@@ -18,44 +18,51 @@ export default function ExercisesField() {
       keyName="id"
       render={({ fields: exercises, append, swap, update, remove }) => (
         <>
-          {exercises.map((exercise, i) => (
-            <Card key={exercise.id} className="flex flex-row items-center gap-4 p-4">
-              <div className="flex flex-col items-center gap-2">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => swap(i, i - 1)}
-                  disabled={i === 0}
-                >
-                  <ChevronUp />
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => swap(i, i + 1)}
-                  disabled={i === exercises.length - 1}
-                >
-                  <ChevronDown />
-                </Button>
-              </div>
-              <div className="flex grow flex-col gap-2">
-                <h5 className="text-xl font-bold">{exercise.name}</h5>
-                <p className="text-foreground/50">
-                  {exercise.sets}x{exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
-                </p>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <Button type="button" variant="outline" size="icon" onClick={() => setEditIndex(i)}>
-                  <Pencil />
-                </Button>
-                <Button type="button" variant="outline" size="icon" onClick={() => remove(i)}>
-                  <Trash2 />
-                </Button>
-              </div>
-            </Card>
-          ))}
+          <div className="-mx-3 flex h-0 grow flex-col gap-4 overflow-auto px-3">
+            {exercises.map((exercise, i) => (
+              <Card key={exercise.id} className="flex flex-row items-center gap-4 p-4">
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => swap(i, i - 1)}
+                    disabled={i === 0}
+                  >
+                    <ChevronUp />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => swap(i, i + 1)}
+                    disabled={i === exercises.length - 1}
+                  >
+                    <ChevronDown />
+                  </Button>
+                </div>
+                <div className="flex grow flex-col gap-2">
+                  <h5 className="text-xl font-bold">{exercise.name}</h5>
+                  <p className="text-foreground/50">
+                    {exercise.sets}x{exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
+                  </p>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setEditIndex(i)}
+                  >
+                    <Pencil />
+                  </Button>
+                  <Button type="button" variant="outline" size="icon" onClick={() => remove(i)}>
+                    <Trash2 />
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
 
           <Button type="button" variant="outline" onClick={() => setIsCreating(true)}>
             Agregar Ejercicio

@@ -31,7 +31,6 @@ export default function RoutineForm({ defaultValues, onSubmit }: RoutineFormProp
       >
         <TextFormField name="name" label="Nombre" placeholder="Mi Rutina..." />
         <ExercisesField />
-        <div className="grow" />
         <Button type="submit">Guardar</Button>
       </form>
     </Form>
