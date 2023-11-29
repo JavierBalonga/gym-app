@@ -11,7 +11,7 @@ export interface Store {
   updateRoutine: (routine: Routine) => void;
 
   actualRoutineExecutionId: string | null;
-  setActualRoutineExecutionId: (id: string) => void;
+  setActualRoutineExecutionId: (id: string | null) => void;
 
   addRoutineExecution: (routineId: string, routineExecution: RoutineExecution) => void;
   addExerciseExecution: (

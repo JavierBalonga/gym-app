@@ -50,11 +50,9 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
                   <Pencil />
                 </Link>
               </Button>
-              {Boolean(routine.exercises.length) && (
+              {routine.exercises.length > 0 && (
                 <Button type="button" variant="default" className="w-full grow" asChild>
-                  <Link to={`/execute/${routine.id}/${routine.exercises[0].id}`}>
-                    Empezar Rutina
-                  </Link>
+                  <Link to={`/execute/${routine.id}`}>Empezar Rutina</Link>
                 </Button>
               )}
             </div>
@@ -63,19 +61,4 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
       </Accordion>
     </Card>
   );
-}
-
-{
-  /* <div className="flex flex-col items-center gap-2">
-<Button type="button" variant="outline" size="icon" asChild>
-  <Link to={`/edit/${routine.id}`}>
-    <Pencil />
-  </Link>
-</Button>
-<Button type="button" variant="outline" size="icon" asChild>
-  <Link to={`/delete/${routine.id}`}>
-    <Trash2 />
-  </Link>
-</Button>
-</div> */
 }
