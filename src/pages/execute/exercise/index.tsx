@@ -59,6 +59,32 @@ export default function ExecuteExercisePage() {
     return newExerciseExecution;
   }, [routineExecution, exercise]);
 
+  const previousExerciseExecutionData = useMemo(() => {
+    if (!routine || !actualRoutineExecutionId || !exercise) return null;
+    const actualRoutineExecutionIndex = routine.executions.findIndex(
+      (e) => e.id === actualRoutineExecutionId,
+    );
+    if (actualRoutineExecutionIndex === -1) return null;
+    const previousRoutineExecution = routine.executions[actualRoutineExecutionIndex - 1];
+    if (!previousRoutineExecution) return null;
+    const previousExerciseExecution = previousRoutineExecution.exercises.find(
+      (e) => e.exerciseId === exercise.id,
+    );
+    if (!previousExerciseExecution) return null;
+    const sets = previousExerciseExecution.sets.length;
+    let totalWeight = 0;
+    let totalReps = 0;
+    previousExerciseExecution.sets.forEach((set) => {
+      totalWeight += set.weight;
+      totalReps += set.reps;
+    });
+    return {
+      sets: sets,
+      weight: totalWeight / sets,
+      reps: totalReps / sets,
+    };
+  }, [routine, actualRoutineExecutionId, exercise]);
+
   const remainingSets = useMemo(() => {
     if (!exercise || !exerciseExecution) return null;
     return exercise.sets - exerciseExecution.sets.length;
@@ -108,13 +134,26 @@ export default function ExecuteExercisePage() {
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetContent>
-        <div className="flex flex-row flex-wrap items-baseline justify-between gap-2 pt-6">
+        <div className="flex flex-row flex-wrap items-baseline justify-between gap-2 pt-6 text-foreground">
           <h3 className="text-2xl">{exercise?.name}</h3>
-          <p className="text-foreground/50">
+          <p>
             {exercise.sets}x{exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
           </p>
         </div>
         <hr />
+        {previousExerciseExecutionData && (
+          <>
+            <div className="flex flex-row flex-wrap items-baseline justify-between gap-2 text-foreground/50">
+              <h4 className="text-md">Ejecucion anterior</h4>
+              <p>
+                {previousExerciseExecutionData.sets}x{previousExerciseExecutionData.reps}{' '}
+                {previousExerciseExecutionData.weight &&
+                  `${previousExerciseExecutionData.weight}Kg`}
+              </p>
+            </div>
+            <hr />
+          </>
+        )}
         <div className="flex h-0 grow flex-col gap-2 overflow-auto px-4">
           {exerciseExecution?.sets.map((set, i) => (
             <Card key={set.id} className="flex flex-row items-center gap-3 py-2 pl-6 pr-2">
