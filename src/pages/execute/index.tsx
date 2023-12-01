@@ -61,8 +61,8 @@ export default function ExecutePage() {
       <hr />
       <div className="-mx-3 flex h-0 grow flex-col gap-4 overflow-auto px-3">
         {routine.exercises.map((exercise) => (
-          <Link to={`/execute/${routine.id}/${exercise.id}`}>
-            <Card key={exercise.id} className="flex flex-row items-center gap-4 px-6 py-4">
+          <Link key={exercise.id} to={`/execute/${routine.id}/${exercise.id}`}>
+            <Card className="flex flex-row items-center gap-4 px-6 py-4">
               <div className="flex grow flex-col items-start">
                 <h5 className="text-2xl font-bold">{exercise.name}</h5>
                 <p className="text-foreground/50">
