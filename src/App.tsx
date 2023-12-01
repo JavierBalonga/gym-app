@@ -56,15 +56,17 @@ export default function App() {
               <ExecutePage />
             </Suspense>
           }
-        />
-        <Route
-          path="/execute/:routineId/:exerciseId"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <ExecuteExercisePage />
-            </Suspense>
-          }
-        />
+        >
+          <Route
+            path="/execute/:routineId/:exerciseId"
+            element={
+              <Suspense fallback={<LoadingPage />}>
+                <ExecuteExercisePage />
+              </Suspense>
+            }
+          />
+        </Route>
+
         <Route
           path="*"
           element={

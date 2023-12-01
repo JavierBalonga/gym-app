@@ -3,7 +3,7 @@ import Section from '@/components/business/section';
 import { useStore } from '@/contexts/store';
 import { RoutineExecution } from '@/types';
 import { Play } from 'lucide-react';
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '../../components/ui/button';
 import { Card } from '../../components/ui/card';
@@ -61,24 +61,25 @@ export default function ExecutePage() {
       <hr />
       <div className="-mx-3 flex h-0 grow flex-col gap-4 overflow-auto px-3">
         {routine.exercises.map((exercise) => (
-          <Card key={exercise.id} className="flex flex-row items-center gap-4 px-6 py-4">
-            <div className="flex grow flex-col items-start">
-              <h5 className="text-2xl font-bold">{exercise.name}</h5>
-              <p className="text-foreground/50">
-                {exercise.sets}x{exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
-              </p>
-            </div>
-            <Button type="button" variant="outline" size="icon" asChild>
-              <Link to={`/execute/${routine.id}/${exercise.id}`}>
+          <Link to={`/execute/${routine.id}/${exercise.id}`}>
+            <Card key={exercise.id} className="flex flex-row items-center gap-4 px-6 py-4">
+              <div className="flex grow flex-col items-start">
+                <h5 className="text-2xl font-bold">{exercise.name}</h5>
+                <p className="text-foreground/50">
+                  {exercise.sets}x{exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
+                </p>
+              </div>
+              <Button type="button" variant="outline" size="icon">
                 <Play />
-              </Link>
-            </Button>
-          </Card>
+              </Button>
+            </Card>
+          </Link>
         ))}
       </div>
       <Button variant={isComplete ? 'default' : 'outline'} onClick={handleFinishRoutine}>
         Finalizar Rutina
       </Button>
+      <Outlet />
     </Section>
   );
 }
