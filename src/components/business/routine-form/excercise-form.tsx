@@ -19,8 +19,8 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
     defaultValues: defaultValues || {
       id: crypto.randomUUID(),
       name: '',
-      sets: 0,
-      reps: 0,
+      sets: 1,
+      reps: 1,
       weight: 0,
       comment: '',
     },
@@ -40,9 +40,9 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
         }}
       >
         <TextFormField name="name" label="Nombre" placeholder="Mi Ejercicio..." />
-        <NumberFormField name="sets" label="Series" />
-        <NumberFormField name="reps" label="Repeticiones" />
-        <NumberFormField name="weight" label="Peso" />
+        <NumberFormField name="sets" label="Series" min={1} max={99} />
+        <NumberFormField name="reps" label="Repeticiones" min={1} max={999} />
+        <NumberFormField name="weight" label="Peso" min={0} step={0.5} max={999} />
         <TextareaFormField name="comment" label="Comentario" />
         <div className="grow" />
         <Button type="submit">Guardar</Button>
