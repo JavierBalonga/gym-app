@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 const RADIUS = 60;
 const ITEM_HEIGHT = 48;
 const ANGLE_BY_ITEM = 45;
-const ANGLE_FACTOR = 45;
+const ANGLE_FACTOR = 90;
 
 interface WheelInputContextContent {
   delta: number;
