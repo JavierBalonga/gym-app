@@ -4,7 +4,8 @@ import { cn } from '@/lib/utils';
 const RADIUS = 60;
 const ITEM_HEIGHT = 48;
 const ANGLE_BY_ITEM = 45;
-const ANGLE_FACTOR = 90;
+const ANGLE_FACTOR = 45;
+const DISPLACEMENT_FACTOR = 4;
 
 interface WheelInputContextContent {
   delta: number;
@@ -31,6 +32,7 @@ export function WheelInput<TValue extends string | number = string | number>({
   const [itemValues, setItemValues] = useState<(string | number)[]>([]);
 
   const startDelta = useRef<number | null>(null);
+  const startClientY = useRef<number | null>(null);
 
   useEffect(() => {
     if (value === undefined) return;
@@ -48,17 +50,20 @@ export function WheelInput<TValue extends string | number = string | number>({
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLUListElement>) => {
-    startDelta.current = delta + e.touches[0].clientY;
+    startDelta.current = delta;
+    startClientY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLUListElement>) => {
-    if (startDelta.current === null) return;
-    const delta = startDelta.current - e.touches[0].clientY;
+    if (startDelta.current === null || startClientY.current === null) return;
+    const delta =
+      startDelta.current + (startClientY.current - e.touches[0].clientY) * DISPLACEMENT_FACTOR;
     setDelta(delta);
   };
 
   const handleTouchEnd = () => {
     startDelta.current = null;
+    startClientY.current = null;
     const newIndex = -Math.round(delta / ITEM_HEIGHT);
     setDelta(-newIndex * ITEM_HEIGHT);
     const newValue = itemValues[newIndex];
