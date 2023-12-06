@@ -99,8 +99,8 @@ export default function ExecuteExercisePage() {
   useEffect(() => {
     if (!exercise || !exerciseExecution) return;
     const lastSet = exerciseExecution.sets[exerciseExecution?.sets.length - 1];
-    setWeight(lastSet?.weight || exercise.weight);
-    setReps(lastSet?.reps || exercise.reps);
+    setWeight(lastSet?.weight || previousExerciseExecutionData?.weight || exercise.weight);
+    setReps(lastSet?.reps || previousExerciseExecutionData?.reps || exercise.reps);
   }, [exercise]);
 
   const handleAddSerie = () => {
