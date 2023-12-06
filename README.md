@@ -5,7 +5,7 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 ## [Test It HERE](https://javierbalonga.github.io/gym-app/) 
 
 ## Backlog:
-- Cambiar que al agregar una ejecucion de serie lo haga mediante un modal
+- refeactorear la vista de ejecucion utilizando contextos
 - Vista de Ejecuciones pasadas
 - Los comentarios no estan teniendo ninguna funcion, deberiamos agregarlos a la vista de ejecucion de ese ejercicio
 - El finalizar ejercicio esta raro, porque muchas veces se quiere volver solo para saber que ejercicio sigue, entonces se le da a finalizar y se vuelve

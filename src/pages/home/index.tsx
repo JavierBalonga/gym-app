@@ -2,8 +2,10 @@ import RoutineCard from '@/components/business/routine-card';
 import Section from '@/components/business/section';
 import { Button } from '@/components/ui/button';
 import { useStore } from '@/contexts/store';
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@radix-ui/react-dialog';
 import { Link, Outlet } from 'react-router-dom';
 
+import { DialogFooter, DialogHeader } from '../../components/ui/dialog';
 import emptyRoutinesIllustration from '@/assets/empty-routines.svg';
 
 export default function HomePage() {

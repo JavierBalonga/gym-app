@@ -11,6 +11,7 @@ const DeletePage = lazy(() => import('./pages/home/delete'));
 const ExecutePage = lazy(() => import('./pages/execute'));
 const ExecuteExercisePage = lazy(() => import('./pages/execute/exercise'));
 const NotFoundPage = lazy(() => import('./pages/not-found'));
+const AddSeriePage = lazy(() => import('./pages/execute/exercise/add-serie'));
 
 export default function App() {
   return (
@@ -64,7 +65,16 @@ export default function App() {
                 <ExecuteExercisePage />
               </Suspense>
             }
-          />
+          >
+            <Route
+              path="/execute/:routineId/:exerciseId/add-serie"
+              element={
+                <Suspense fallback={<LoadingPage />}>
+                  <AddSeriePage />
+                </Suspense>
+              }
+            />
+          </Route>
         </Route>
 
         <Route
