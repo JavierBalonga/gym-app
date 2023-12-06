@@ -5,8 +5,6 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 ## [Test It HERE](https://javierbalonga.github.io/gym-app/) 
 
 ## Backlog:
-- Ahumentar el factor de desplazamiento del wheelinput
-- Mostrar los ejercicios como finalizados
 - Cuando hago mi ejecución que por defecto tome las reps y el peso de mi anterior ejecucion
 - Cambiar que al agregar una ejecucion de serie lo haga mediante un modal
 - Vista de Ejecuciones pasadas
