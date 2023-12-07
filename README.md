@@ -11,6 +11,7 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 - El finalizar ejercicio esta raro, porque muchas veces se quiere volver solo para saber que ejercicio sigue, entonces se le da a finalizar y se vuelve
 - Mejorar como se muestra cuando hay una rutina en curso, se puede volver a la pantalla inicial y que haya una rutina en curso, deberiamos mostrar esto de algun modo
 - Agregar descanzos entre series
+- Agregar un servicio de analiticas
 - Agregar un Prompt para incentivar que la gente se descargue la app como applicacion, (preimero habria que ver cuando es el momento adecuado para mostrarlo)
 - Al finalizar un ejercicio agregar un proceso de actualizacion de la rutina con los progresos de la ejecucion
 - Agregar canny para permitir a los usuarios reportar bugs o hacer sugerencias
