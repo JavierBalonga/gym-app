@@ -1,14 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { WheelInput, WheelInputContent, WheelInputItem } from '@/components/ui/wheel-input';
 import { useStore } from '@/contexts/store';
 import { ExerciseExecution, RoutineExecution } from '@/types';
-import { DialogContent, DialogDescription, DialogTitle } from '@radix-ui/react-dialog';
 import { Trash2 } from 'lucide-react';
 import { Link, Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
 
-import { Dialog, DialogFooter, DialogHeader, DialogTrigger } from '../../../components/ui/dialog';
 import { Sheet, SheetContent } from '../../../components/ui/sheet';
 
 export default function ExecuteExercisePage() {
