@@ -5,8 +5,12 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 ## [Test It HERE](https://javierbalonga.github.io/gym-app/) 
 
 ## Backlog:
+- Quitar lazy loadings, en ejecución de rutina y al editar rutina
+- Redondear decimales al promediar última ejecución
+- Cuando la anterior ejecución del ejercicio tiene un promedio que no está en el wheelinput, el wheelinput por defecto usa 1
 - refeactorear la vista de ejecucion utilizando contextos
 - Vista de Ejecuciones pasadas
+
 - Los comentarios no estan teniendo ninguna funcion, deberiamos agregarlos a la vista de ejecucion de ese ejercicio
 - El finalizar ejercicio esta raro, porque muchas veces se quiere volver solo para saber que ejercicio sigue, entonces se le da a finalizar y se vuelve
 - Mejorar como se muestra cuando hay una rutina en curso, se puede volver a la pantalla inicial y que haya una rutina en curso, deberiamos mostrar esto de algun modo
@@ -25,3 +29,5 @@ This is a simple app to manage your gym routine. You can add routines, exercises
     - cuando se hace una serie
     - cuando se termina un ejercicio
     - cuando se termina ena rutina
+- Modal notificacion de nuevas fetures
+

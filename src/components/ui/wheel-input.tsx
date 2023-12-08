@@ -5,7 +5,7 @@ const RADIUS = 60;
 const ITEM_HEIGHT = 48;
 const ANGLE_BY_ITEM = 45;
 const ANGLE_FACTOR = 45;
-const DISPLACEMENT_FACTOR = 2;
+const DISPLACEMENT_FACTOR = 1.2;
 
 interface WheelInputContextContent {
   delta: number;
