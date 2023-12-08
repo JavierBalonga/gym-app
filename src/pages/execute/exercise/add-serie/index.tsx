@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -10,9 +10,7 @@ import {
 } from '@/components/ui/dialog';
 import { WheelInput, WheelInputContent, WheelInputItem } from '@/components/ui/wheel-input';
 import { useStore } from '@/contexts/store';
-import round from '@/lib/round';
-import { ExerciseExecution } from '@/types';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useRoutine } from '../../routine-context';
 import { useRoutineExecution } from '../../routine-execution-context';

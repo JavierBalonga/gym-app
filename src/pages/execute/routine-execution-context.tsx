@@ -1,6 +1,5 @@
-import React, { createContext, ReactNode, useContext, useEffect, useMemo } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useMemo } from 'react';
 import { RoutineExecution } from '@/types';
-import { useParams } from 'react-router-dom';
 
 import { useStore } from '../../contexts/store';
 import { useRoutine } from './routine-context';

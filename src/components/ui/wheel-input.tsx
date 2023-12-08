@@ -120,7 +120,7 @@ export interface WheelInputItemProps extends React.ComponentPropsWithoutRef<'div
 export function WheelInputItem({ value, className, children, ...props }: WheelInputItemProps) {
   const { delta, registerItem } = useWheelInput();
 
-  const [ref, setRef] = useState<HTMLDivElement | null>(null);
+  const [ref, setRef] = useState<HTMLSpanElement | null>(null);
 
   const index = useMemo(() => {
     if (ref === null) return null;

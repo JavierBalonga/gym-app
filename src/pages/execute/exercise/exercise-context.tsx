@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useMemo } from 'react';
+import { createContext, ReactNode, useContext, useMemo } from 'react';
 import { Exercise } from '@/types';
 import { useParams } from 'react-router-dom';
 
