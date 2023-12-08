@@ -1,16 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useExercise } from '@/components/business/exercise-context';
+import { useExerciseExecution } from '@/components/business/exercise-execution-context';
+import { usePreviousExerciseExecution } from '@/components/business/previous-exercise-execution-context';
+import { useRoutine } from '@/components/business/routine-context';
+import { useRoutineExecution } from '@/components/business/routine-execution-context';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { useStore } from '@/contexts/store';
 import { Trash2 } from 'lucide-react';
 import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
-
-import { useRoutine } from '../routine-context';
-import { useRoutineExecution } from '../routine-execution-context';
-import { useExercise } from './exercise-context';
-import { useExerciseExecution } from './exercise-execution-context';
-import { usePreviousExerciseExecution } from './previous-exercise-execution-context';
 
 export default function ExecuteExercisePage() {
   const navigate = useNavigate();

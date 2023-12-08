@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext, useMemo } from 'react';
 import { Exercise } from '@/types';
 import { useParams } from 'react-router-dom';
 
-import { useRoutine } from '../routine-context';
+import { useRoutine } from './routine-context';
 
 const Context = createContext<Exercise | null>(null);
 

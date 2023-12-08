@@ -1,10 +1,10 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react';
 import { ExerciseExecution } from '@/types';
 
-import { useStore } from '../../../contexts/store';
-import { useRoutine } from '../routine-context';
-import { useRoutineExecution } from '../routine-execution-context';
+import { useStore } from '../../contexts/store';
 import { useExercise } from './exercise-context';
+import { useRoutine } from './routine-context';
+import { useRoutineExecution } from './routine-execution-context';
 
 const Context = createContext<ExerciseExecution | null>(null);
 

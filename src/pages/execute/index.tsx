@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import { useRoutine } from '@/components/business/routine-context';
+import { useRoutineExecution } from '@/components/business/routine-execution-context';
 import Section from '@/components/business/section';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -6,9 +8,6 @@ import { useStore } from '@/contexts/store';
 import { cn } from '@/lib/utils';
 import { Check, Play } from 'lucide-react';
 import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
-
-import { useRoutine } from './routine-context';
-import { useRoutineExecution } from './routine-execution-context';
 
 export default function ExecutePage() {
   const navigate = useNavigate();

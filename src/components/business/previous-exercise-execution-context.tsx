@@ -1,9 +1,9 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react';
 
-import { useStore } from '../../../contexts/store';
-import round from '../../../lib/round';
-import { useRoutine } from '../routine-context';
+import { useStore } from '../../contexts/store';
+import round from '../../lib/round';
 import { useExercise } from './exercise-context';
+import { useRoutine } from './routine-context';
 
 export interface PreviousExerciseExecutionData {
   sets: number;

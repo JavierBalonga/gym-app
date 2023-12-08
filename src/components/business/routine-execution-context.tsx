@@ -21,7 +21,11 @@ export const RoutineExecutionProvider = ({ children }: RoutineExecutionProviderP
     if (!routine || !actualRoutineExecutionId) return null;
     const routineExecution = routine.executions.find((e) => e.id === actualRoutineExecutionId);
     if (routineExecution) return routineExecution;
-    const newRoutineExecution: RoutineExecution = { id: actualRoutineExecutionId, exercises: [] };
+    const newRoutineExecution: RoutineExecution = {
+      id: actualRoutineExecutionId,
+      date: new Date().toISOString(),
+      exercises: [],
+    };
     addRoutineExecution(routine.id, newRoutineExecution);
     return newRoutineExecution;
   }, [routine, actualRoutineExecutionId]);

@@ -1,4 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useExercise } from '@/components/business/exercise-context';
+import { useExerciseExecution } from '@/components/business/exercise-execution-context';
+import { usePreviousExerciseExecution } from '@/components/business/previous-exercise-execution-context';
+import { useRoutine } from '@/components/business/routine-context';
+import { useRoutineExecution } from '@/components/business/routine-execution-context';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,12 +16,6 @@ import {
 import { WheelInput, WheelInputContent, WheelInputItem } from '@/components/ui/wheel-input';
 import { useStore } from '@/contexts/store';
 import { Link, useNavigate } from 'react-router-dom';
-
-import { useRoutine } from '../../routine-context';
-import { useRoutineExecution } from '../../routine-execution-context';
-import { useExercise } from '../exercise-context';
-import { useExerciseExecution } from '../exercise-execution-context';
-import { usePreviousExerciseExecution } from '../previous-exercise-execution-context';
 
 export default function AddSeriePage() {
   const navigate = useNavigate();
