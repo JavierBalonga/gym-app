@@ -145,7 +145,7 @@ export function WheelInputItem({ value, className, children, ...props }: WheelIn
 
   return (
     <li className="absolute left-0 top-1/2 w-full -translate-y-1/2" style={{ height: ITEM_HEIGHT }}>
-      <div
+      <span
         className={cn(
           'absolute left-0 top-0 flex w-full items-center justify-center transition-transform duration-75 [transform-style:_preserve-3d;]',
           className,
@@ -155,7 +155,7 @@ export function WheelInputItem({ value, className, children, ...props }: WheelIn
         ref={setRef}
       >
         {children || value}
-      </div>
+      </span>
     </li>
   );
 }

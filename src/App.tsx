@@ -5,6 +5,11 @@ import { Route, Routes } from 'react-router-dom';
 import ExecutePage from './pages/execute';
 import ExecuteExercisePage from './pages/execute/exercise';
 import AddSeriePage from './pages/execute/exercise/add-serie';
+import { ExerciseProvider } from './pages/execute/exercise/exercise-context';
+import { ExerciseExecutionProvider } from './pages/execute/exercise/exercise-execution-context';
+import { PreviousExerciseExecutionProvider } from './pages/execute/exercise/previous-exercise-execution-context';
+import { RoutineProvider } from './pages/execute/routine-context';
+import { RoutineExecutionProvider } from './pages/execute/routine-execution-context';
 import HomePage from './pages/home';
 import LoadingPage from './pages/loading';
 import NotFoundPage from './pages/not-found';
@@ -43,8 +48,28 @@ export default function App() {
             }
           />
         </Route>
-        <Route path="/execute/:routineId" element={<ExecutePage />}>
-          <Route path="/execute/:routineId/:exerciseId" element={<ExecuteExercisePage />}>
+        <Route
+          path="/execute/:routineId"
+          element={
+            <RoutineProvider>
+              <RoutineExecutionProvider>
+                <ExecutePage />
+              </RoutineExecutionProvider>
+            </RoutineProvider>
+          }
+        >
+          <Route
+            path="/execute/:routineId/:exerciseId"
+            element={
+              <ExerciseProvider>
+                <ExerciseExecutionProvider>
+                  <PreviousExerciseExecutionProvider>
+                    <ExecuteExercisePage />
+                  </PreviousExerciseExecutionProvider>
+                </ExerciseExecutionProvider>
+              </ExerciseProvider>
+            }
+          >
             <Route path="/execute/:routineId/:exerciseId/add-serie" element={<AddSeriePage />} />
           </Route>
         </Route>

@@ -3,83 +3,28 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { useStore } from '@/contexts/store';
-import round from '@/lib/round';
-import { ExerciseExecution, RoutineExecution } from '@/types';
 import { Trash2 } from 'lucide-react';
-import { Link, Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
+
+import { useRoutine } from '../routine-context';
+import { useRoutineExecution } from '../routine-execution-context';
+import { useExercise } from './exercise-context';
+import { useExerciseExecution } from './exercise-execution-context';
+import { usePreviousExerciseExecution } from './previous-exercise-execution-context';
 
 export default function ExecuteExercisePage() {
-  const params = useParams<{ routineId: string; exerciseId: string }>();
   const navigate = useNavigate();
-  const routines = useStore((s) => s.routines);
   const actualRoutineExecutionId = useStore((s) => s.actualRoutineExecutionId);
   const setActualRoutineExecutionId = useStore((s) => s.setActualRoutineExecutionId);
-  const addRoutineExecution = useStore((s) => s.addRoutineExecution);
-  const addExerciseExecution = useStore((s) => s.addExerciseExecution);
   const removeSetExecution = useStore((s) => s.removeSetExecution);
 
   const [open, setOpen] = useState(true);
 
-  const routine = useMemo(() => {
-    const routine = routines.find((r) => r.id === params.routineId);
-    if (!routine) return null;
-    return routine;
-  }, [params.routineId, routines]);
-
-  const exercise = useMemo(() => {
-    if (!routine) return null;
-    const exercise = routine.exercises.find((e) => e.id === params.exerciseId);
-    if (!exercise) return null;
-    return exercise;
-  }, [params.exerciseId, routine]);
-
-  const routineExecution = useMemo(() => {
-    if (!routine || !actualRoutineExecutionId) return null;
-    const routineExecution = routine.executions.find((e) => e.id === actualRoutineExecutionId);
-    if (routineExecution) return routineExecution;
-    const newRoutineExecution: RoutineExecution = { id: actualRoutineExecutionId, exercises: [] };
-    addRoutineExecution(routine.id, newRoutineExecution);
-    return newRoutineExecution;
-  }, [routine, actualRoutineExecutionId]);
-
-  const exerciseExecution = useMemo(() => {
-    if (!routine || !routineExecution || !exercise) return null;
-    const exerciseExecution = routineExecution.exercises.find((e) => e.exerciseId === exercise.id);
-    if (exerciseExecution) return exerciseExecution;
-    const newExerciseExecution: ExerciseExecution = {
-      id: crypto.randomUUID(),
-      exerciseId: exercise.id,
-      sets: [],
-    };
-    addExerciseExecution(routine.id, routineExecution.id, newExerciseExecution);
-    return newExerciseExecution;
-  }, [routineExecution, exercise]);
-
-  const previousExerciseExecutionData = useMemo(() => {
-    if (!routine || !actualRoutineExecutionId || !exercise) return null;
-    const actualRoutineExecutionIndex = routine.executions.findIndex(
-      (e) => e.id === actualRoutineExecutionId,
-    );
-    if (actualRoutineExecutionIndex === -1) return null;
-    const previousRoutineExecution = routine.executions[actualRoutineExecutionIndex - 1];
-    if (!previousRoutineExecution) return null;
-    const previousExerciseExecution = previousRoutineExecution.exercises.find(
-      (e) => e.exerciseId === exercise.id,
-    );
-    if (!previousExerciseExecution) return null;
-    const sets = previousExerciseExecution.sets.length;
-    let totalWeight = 0;
-    let totalReps = 0;
-    previousExerciseExecution.sets.forEach((set) => {
-      totalWeight += set.weight;
-      totalReps += set.reps;
-    });
-    return {
-      sets: sets,
-      weight: round(totalWeight / sets, 0.5),
-      reps: round(totalReps / sets),
-    };
-  }, [routine, actualRoutineExecutionId, exercise]);
+  const routine = useRoutine();
+  const routineExecution = useRoutineExecution();
+  const exercise = useExercise();
+  const exerciseExecution = useExerciseExecution();
+  const previousExerciseExecutionData = usePreviousExerciseExecution();
 
   const remainingSets = useMemo(() => {
     if (!exercise || !exerciseExecution) return null;

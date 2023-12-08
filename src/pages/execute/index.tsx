@@ -1,41 +1,21 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import Section from '@/components/business/section';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useStore } from '@/contexts/store';
 import { cn } from '@/lib/utils';
-import { RoutineExecution } from '@/types';
 import { Check, Play } from 'lucide-react';
-import { Link, Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
+
+import { useRoutine } from './routine-context';
+import { useRoutineExecution } from './routine-execution-context';
 
 export default function ExecutePage() {
-  const params = useParams<{ routineId: string }>();
   const navigate = useNavigate();
-  const routines = useStore((s) => s.routines);
-  const actualRoutineExecutionId = useStore((s) => s.actualRoutineExecutionId);
   const setActualRoutineExecutionId = useStore((s) => s.setActualRoutineExecutionId);
-  const addRoutineExecution = useStore((s) => s.addRoutineExecution);
 
-  const routine = useMemo(() => {
-    const routine = routines.find((r) => r.id === params.routineId);
-    if (!routine) return null;
-    return routine;
-  }, [params.routineId, routines]);
-
-  const routineExecution = useMemo(() => {
-    if (!routine || !actualRoutineExecutionId) return null;
-    const routineExecution = routine.executions.find((e) => e.id === actualRoutineExecutionId);
-    if (routineExecution) return routineExecution;
-    const newRoutineExecution: RoutineExecution = { id: actualRoutineExecutionId, exercises: [] };
-    addRoutineExecution(routine.id, newRoutineExecution);
-    return newRoutineExecution;
-  }, [routine, actualRoutineExecutionId]);
-
-  useEffect(() => {
-    if (actualRoutineExecutionId === null) {
-      setActualRoutineExecutionId(crypto.randomUUID());
-    }
-  }, [actualRoutineExecutionId]);
+  const routine = useRoutine();
+  const routineExecution = useRoutineExecution();
 
   const isComplete = useMemo(() => {
     if (!routine || !routineExecution) return false;
