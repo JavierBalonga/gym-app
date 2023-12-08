@@ -1,10 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import minmax from '@/lib/minmax';
 import { Minus, Plus } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
-
-import minmax from '../../lib/minmax';
 
 export interface NumberFormFieldProps {
   name: string;

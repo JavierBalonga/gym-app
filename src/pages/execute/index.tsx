@@ -1,13 +1,12 @@
 import { useEffect, useMemo } from 'react';
 import Section from '@/components/business/section';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { useStore } from '@/contexts/store';
+import { cn } from '@/lib/utils';
 import { RoutineExecution } from '@/types';
 import { Check, Play } from 'lucide-react';
 import { Link, Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
-
-import { Button } from '../../components/ui/button';
-import { Card } from '../../components/ui/card';
-import { cn } from '../../lib/utils';
 
 export default function ExecutePage() {
   const params = useParams<{ routineId: string }>();

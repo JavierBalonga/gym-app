@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { useStore } from '@/contexts/store';
+import round from '@/lib/round';
 import { ExerciseExecution, RoutineExecution } from '@/types';
 import { Trash2 } from 'lucide-react';
 import { Link, Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
-
-import { Sheet, SheetContent } from '../../../components/ui/sheet';
 
 export default function ExecuteExercisePage() {
   const params = useParams<{ routineId: string; exerciseId: string }>();
@@ -76,8 +76,8 @@ export default function ExecuteExercisePage() {
     });
     return {
       sets: sets,
-      weight: totalWeight / sets,
-      reps: totalReps / sets,
+      weight: round(totalWeight / sets, 0.5),
+      reps: round(totalReps / sets),
     };
   }, [routine, actualRoutineExecutionId, exercise]);
 

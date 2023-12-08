@@ -8,15 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { WheelInput, WheelInputContent, WheelInputItem } from '@/components/ui/wheel-input';
+import { useStore } from '@/contexts/store';
+import round from '@/lib/round';
+import { ExerciseExecution, RoutineExecution } from '@/types';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-
-import {
-  WheelInput,
-  WheelInputContent,
-  WheelInputItem,
-} from '../../../../components/ui/wheel-input';
-import { useStore } from '../../../../contexts/store';
-import { ExerciseExecution, RoutineExecution } from '../../../../types';
 
 export default function AddSeriePage() {
   const params = useParams<{ routineId: string; exerciseId: string }>();
@@ -88,8 +84,8 @@ export default function AddSeriePage() {
     });
     return {
       sets: sets,
-      weight: totalWeight / sets,
-      reps: totalReps / sets,
+      weight: round(totalWeight / sets, 0.5),
+      reps: round(totalReps / sets),
     };
   }, [routine, actualRoutineExecutionId, exercise]);
 

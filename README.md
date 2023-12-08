@@ -5,8 +5,6 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 ## [Test It HERE](https://javierbalonga.github.io/gym-app/) 
 
 ## Backlog:
-- Redondear decimales al promediar última ejecución
-- Cuando la anterior ejecución del ejercicio tiene un promedio que no está en el wheelinput, el wheelinput por defecto usa 1
 - refeactorear la vista de ejecucion utilizando contextos
 - Vista de Ejecuciones pasadas
 
