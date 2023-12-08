@@ -2,29 +2,22 @@ import { lazy, Suspense } from 'react';
 import Layout from '@/components/business/layout';
 import { Route, Routes } from 'react-router-dom';
 
+import ExecutePage from './pages/execute';
+import ExecuteExercisePage from './pages/execute/exercise';
+import AddSeriePage from './pages/execute/exercise/add-serie';
+import HomePage from './pages/home';
 import LoadingPage from './pages/loading';
+import NotFoundPage from './pages/not-found';
 
-const HomePage = lazy(() => import('./pages/home'));
 const CreatePage = lazy(() => import('./pages/home/create'));
 const EditPage = lazy(() => import('./pages/home/edit'));
 const DeletePage = lazy(() => import('./pages/home/delete'));
-const ExecutePage = lazy(() => import('./pages/execute'));
-const ExecuteExercisePage = lazy(() => import('./pages/execute/exercise'));
-const NotFoundPage = lazy(() => import('./pages/not-found'));
-const AddSeriePage = lazy(() => import('./pages/execute/exercise/add-serie'));
 
 export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <HomePage />
-            </Suspense>
-          }
-        >
+        <Route path="/" element={<HomePage />}>
           <Route
             path="/create"
             element={
@@ -50,41 +43,12 @@ export default function App() {
             }
           />
         </Route>
-        <Route
-          path="/execute/:routineId"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <ExecutePage />
-            </Suspense>
-          }
-        >
-          <Route
-            path="/execute/:routineId/:exerciseId"
-            element={
-              <Suspense fallback={<LoadingPage />}>
-                <ExecuteExercisePage />
-              </Suspense>
-            }
-          >
-            <Route
-              path="/execute/:routineId/:exerciseId/add-serie"
-              element={
-                <Suspense fallback={<LoadingPage />}>
-                  <AddSeriePage />
-                </Suspense>
-              }
-            />
+        <Route path="/execute/:routineId" element={<ExecutePage />}>
+          <Route path="/execute/:routineId/:exerciseId" element={<ExecuteExercisePage />}>
+            <Route path="/execute/:routineId/:exerciseId/add-serie" element={<AddSeriePage />} />
           </Route>
         </Route>
-
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<LoadingPage />}>
-              <NotFoundPage />
-            </Suspense>
-          }
-        />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
