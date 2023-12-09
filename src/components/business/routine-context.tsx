@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useStore } from '../../contexts/store';
 
-const Context = createContext<Routine | null>(null);
+const Context = createContext<Routine | null | 'NOT_INSIDE_PROVIDER'>('NOT_INSIDE_PROVIDER');
 
 export interface RoutineProviderProps {
   children: ReactNode;
@@ -26,7 +26,7 @@ export const RoutineProvider = ({ children }: RoutineProviderProps) => {
 
 export const useRoutine = () => {
   const context = useContext(Context);
-  if (context === null) {
+  if (context === 'NOT_INSIDE_PROVIDER') {
     throw new Error('useRoutine has to be inside a RoutineProvider');
   }
   return context;

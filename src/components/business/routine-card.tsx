@@ -7,7 +7,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Routine } from '@/types';
-import { Pencil, Trash2 } from 'lucide-react';
+import { History, Pencil, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export interface RoutineCardProps {
@@ -48,6 +48,11 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
               <Button type="button" variant="outline" size="icon" asChild>
                 <Link to={`/edit/${routine.id}`}>
                   <Pencil />
+                </Link>
+              </Button>
+              <Button type="button" variant="outline" size="icon" asChild>
+                <Link to={`/history/${routine.id}`}>
+                  <History />
                 </Link>
               </Button>
               {routine.exercises.length > 0 && (

@@ -1,22 +1,17 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+import { useRoutine } from '@/components/business/routine-context';
 import RoutineForm from '@/components/business/routine-form/routine-form';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { useStore } from '@/contexts/store';
 import { Routine } from '@/types';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function EditPage() {
-  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const routines = useStore((s) => s.routines);
   const updateRoutine = useStore((s) => s.updateRoutine);
   const [open, setOpen] = useState(true);
 
-  const routine = useMemo(() => {
-    const routine = routines.find((r) => r.id === id);
-    if (!routine) navigate('..');
-    return routine;
-  }, [id, routines]);
+  const routine = useRoutine();
 
   const handleOpenChange = (open: boolean) => {
     if (open) return;

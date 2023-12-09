@@ -11,7 +11,9 @@ export interface PreviousExerciseExecutionData {
   reps: number;
 }
 
-const Context = createContext<PreviousExerciseExecutionData | null>(null);
+const Context = createContext<PreviousExerciseExecutionData | null | 'NOT_INSIDE_PROVIDER'>(
+  'NOT_INSIDE_PROVIDER',
+);
 
 export interface PreviousExerciseExecutionProviderProps {
   children: ReactNode;
@@ -56,7 +58,7 @@ export const PreviousExerciseExecutionProvider = ({
 
 export const usePreviousExerciseExecution = () => {
   const context = useContext(Context);
-  if (context === null) {
+  if (context === 'NOT_INSIDE_PROVIDER') {
     throw new Error(
       'usePreviousExerciseExecution has to be inside a PreviousExerciseExecutionProvider',
     );

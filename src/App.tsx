@@ -2,14 +2,14 @@ import { lazy, Suspense } from 'react';
 import Layout from '@/components/business/layout';
 import { Route, Routes } from 'react-router-dom';
 
+import { ExerciseProvider } from './components/business/exercise-context';
+import { ExerciseExecutionProvider } from './components/business/exercise-execution-context';
+import { PreviousExerciseExecutionProvider } from './components/business/previous-exercise-execution-context';
+import { RoutineProvider } from './components/business/routine-context';
+import { RoutineExecutionProvider } from './components/business/routine-execution-context';
 import ExecutePage from './pages/execute';
 import ExecuteExercisePage from './pages/execute/exercise';
 import AddSeriePage from './pages/execute/exercise/add-serie';
-import { ExerciseProvider } from './pages/execute/exercise/exercise-context';
-import { ExerciseExecutionProvider } from './pages/execute/exercise/exercise-execution-context';
-import { PreviousExerciseExecutionProvider } from './pages/execute/exercise/previous-exercise-execution-context';
-import { RoutineProvider } from './pages/execute/routine-context';
-import { RoutineExecutionProvider } from './pages/execute/routine-execution-context';
 import HomePage from './pages/home';
 import LoadingPage from './pages/loading';
 import NotFoundPage from './pages/not-found';
@@ -17,6 +17,7 @@ import NotFoundPage from './pages/not-found';
 const CreatePage = lazy(() => import('./pages/home/create'));
 const EditPage = lazy(() => import('./pages/home/edit'));
 const DeletePage = lazy(() => import('./pages/home/delete'));
+const HistoryPage = lazy(() => import('./pages/history'));
 
 export default function App() {
   return (
@@ -32,22 +33,36 @@ export default function App() {
             }
           />
           <Route
-            path="/edit/:id"
+            path="/edit/:routineId"
             element={
-              <Suspense fallback={<LoadingPage />}>
-                <EditPage />
-              </Suspense>
+              <RoutineProvider>
+                <Suspense fallback={<LoadingPage />}>
+                  <EditPage />
+                </Suspense>
+              </RoutineProvider>
             }
           />
           <Route
-            path="/delete/:id"
+            path="/delete/:routineId"
             element={
-              <Suspense fallback={<LoadingPage />}>
-                <DeletePage />
-              </Suspense>
+              <RoutineProvider>
+                <Suspense fallback={<LoadingPage />}>
+                  <DeletePage />
+                </Suspense>
+              </RoutineProvider>
             }
           />
         </Route>
+        <Route
+          path="/history/:routineId"
+          element={
+            <RoutineProvider>
+              <Suspense fallback={<LoadingPage />}>
+                <HistoryPage />
+              </Suspense>
+            </RoutineProvider>
+          }
+        />
         <Route
           path="/execute/:routineId"
           element={

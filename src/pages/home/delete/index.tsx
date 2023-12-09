@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useRoutine } from '@/components/business/routine-context';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -12,17 +13,12 @@ import { useStore } from '@/contexts/store';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function DeletePage() {
-  const { id } = useParams<{ id: string }>();
+  const { routineId } = useParams<{ routineId: string }>();
   const navigate = useNavigate();
-  const routines = useStore((s) => s.routines);
   const removeRoutine = useStore((s) => s.removeRoutine);
   const [open, setOpen] = useState(true);
 
-  const routine = useMemo(() => {
-    const routine = routines.find((r) => r.id === id);
-    if (!routine) navigate('..');
-    return routine;
-  }, [id, routines]);
+  const routine = useRoutine();
 
   const handleOpenChange = (open: boolean) => {
     if (open) return;
@@ -31,8 +27,8 @@ export default function DeletePage() {
   };
 
   const handleDelete = () => {
-    if (!id) return;
-    removeRoutine(id);
+    if (!routineId) return;
+    removeRoutine(routineId);
     setOpen(false);
     setTimeout(() => navigate('..'), 200);
   };

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useRoutine } from './routine-context';
 
-const Context = createContext<Exercise | null>(null);
+const Context = createContext<Exercise | null | 'NOT_INSIDE_PROVIDER'>('NOT_INSIDE_PROVIDER');
 
 export interface ExerciseProviderProps {
   children: ReactNode;
@@ -27,7 +27,7 @@ export const ExerciseProvider = ({ children }: ExerciseProviderProps) => {
 
 export const useExercise = () => {
   const context = useContext(Context);
-  if (context === null) {
+  if (context === 'NOT_INSIDE_PROVIDER') {
     throw new Error('useExercise has to be inside a ExerciseProvider');
   }
   return context;

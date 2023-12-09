@@ -16,6 +16,7 @@ export interface Exercise {
 
 export interface RoutineExecution {
   id: string;
+  date: string;
   exercises: ExerciseExecution[];
 }
 

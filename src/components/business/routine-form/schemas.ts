@@ -55,6 +55,8 @@ export const routineformSchema = z.object({
     z.object({
       id: z.string().uuid(),
 
+      date: z.string().datetime('La fecha de ejecución debe tener el formato YYYY-MM-DD HH:mm:ss'),
+
       exercises: z.array(
         z.object({
           id: z.string().uuid(),
