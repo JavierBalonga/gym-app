@@ -63,6 +63,7 @@ export const useStore = create(
       },
 
       addRoutineExecution: (routineId, routineExecution) => {
+        console.log('addRoutineExecution', routineExecution.id);
         set((state) => ({
           routines: state.routines.map((routine) => {
             if (routine.id !== routineId) return routine;
@@ -75,8 +76,6 @@ export const useStore = create(
       },
 
       addExerciseExecution: (routineId, routineExecutionId, exerciseExecution) => {
-        console.log('addExerciseExecution', exerciseExecution.id);
-
         set((state) => ({
           routines: state.routines.map((routine) => {
             if (routine.id !== routineId) return routine;
@@ -144,7 +143,7 @@ export const useStore = create(
     }),
     {
       name: 'gym-storage',
-      version: 3,
+      version: 4,
       migrate: migrate,
     },
   ),

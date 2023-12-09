@@ -1,8 +1,7 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react';
+import { useStore } from '@/contexts/store';
 import { Routine } from '@/types';
 import { useParams } from 'react-router-dom';
-
-import { useStore } from '../../contexts/store';
 
 const Context = createContext<Routine | null | 'NOT_INSIDE_PROVIDER'>('NOT_INSIDE_PROVIDER');
 

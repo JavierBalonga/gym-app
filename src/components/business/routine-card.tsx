@@ -6,15 +6,37 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Routine } from '@/types';
+import { useStore } from '@/contexts/store';
+import { Routine, RoutineExecution } from '@/types';
 import { History, Pencil, Trash2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export interface RoutineCardProps {
   routine: Routine;
 }
 
 export default function RoutineCard({ routine }: RoutineCardProps) {
+  const navigate = useNavigate();
+  const actualRoutineExecutionId = useStore((s) => s.actualRoutineExecutionId);
+  const setActualRoutineExecutionId = useStore((s) => s.setActualRoutineExecutionId);
+  const addRoutineExecution = useStore((s) => s.addRoutineExecution);
+
+  const handleStartRoutine = () => {
+    if (actualRoutineExecutionId) {
+      navigate(`/execute/${routine.id}`);
+      return;
+    }
+    const routineExecutionId = crypto.randomUUID();
+    setActualRoutineExecutionId(routineExecutionId);
+    const newRoutineExecution: RoutineExecution = {
+      id: routineExecutionId,
+      date: new Date().toISOString(),
+      exercises: [],
+    };
+    addRoutineExecution(routine.id, newRoutineExecution);
+    navigate(`/execute/${routine.id}`);
+  };
+
   return (
     <Card className="flex flex-row items-center gap-4 p-4">
       <Accordion type="single" collapsible className="w-full">
@@ -56,8 +78,13 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
                 </Link>
               </Button>
               {routine.exercises.length > 0 && (
-                <Button type="button" variant="default" className="w-full grow" asChild>
-                  <Link to={`/execute/${routine.id}`}>Empezar Rutina</Link>
+                <Button
+                  type="button"
+                  variant="default"
+                  className="w-full grow"
+                  onClick={handleStartRoutine}
+                >
+                  Empezar Rutina
                 </Button>
               )}
             </div>

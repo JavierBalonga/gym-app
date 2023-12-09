@@ -1,15 +1,14 @@
 import { useRoutine } from '@/components/business/routine-context';
 import Section from '@/components/business/section';
-
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '../../components/ui/accordion';
-import { Card } from '../../components/ui/card';
-import formatDatetime from '../../lib/formatDatetime';
-import round from '../../lib/round';
+} from '@/components/ui/accordion';
+import { Card } from '@/components/ui/card';
+import formatDatetime from '@/lib/formatDatetime';
+import round from '@/lib/round';
 
 export default function HistoryPage() {
   const routine = useRoutine();
@@ -18,7 +17,7 @@ export default function HistoryPage() {
     <Section className="gap-3">
       <h2 className="text-4xl font-bold">{routine?.name}</h2>
       <hr />
-      <div className="flex grow flex-col-reverse gap-4">
+      <div className="flex grow flex-col-reverse justify-end gap-4">
         {routine?.executions.map((execution) => {
           console.log(execution.exercises);
           return (
