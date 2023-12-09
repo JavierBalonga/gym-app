@@ -31,7 +31,7 @@ export default function EditPage() {
         <SheetHeader>
           <SheetTitle>Editar Rutina</SheetTitle>
         </SheetHeader>
-        <RoutineForm defaultValues={routine} onSubmit={handleSubmit} />
+        {routine && <RoutineForm defaultValues={routine} onSubmit={handleSubmit} />}
       </SheetContent>
     </Sheet>
   );
