@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo } from 'react';
+import { createContext, ReactNode, useContext, useMemo } from 'react';
 import { useStore } from '@/contexts/store';
 import { RoutineExecution } from '@/types';
 
