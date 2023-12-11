@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react';
-import { useStore } from '@/contexts/store';
 import round from '@/lib/round';
 
+import { RoutineExecutionStatus } from '../../types';
 import { useExercise } from './exercise-context';
 import { useRoutine } from './routine-context';
 
@@ -22,15 +22,13 @@ export interface PreviousExerciseExecutionProviderProps {
 export const PreviousExerciseExecutionProvider = ({
   children,
 }: PreviousExerciseExecutionProviderProps) => {
-  const actualRoutineExecutionId = useStore((s) => s.actualRoutineExecutionId);
-
   const routine = useRoutine();
   const exercise = useExercise();
 
   const previousExerciseExecutionData = useMemo(() => {
-    if (!routine || !actualRoutineExecutionId || !exercise) return null;
+    if (!routine || !exercise) return null;
     const actualRoutineExecutionIndex = routine.executions.findIndex(
-      (e) => e.id === actualRoutineExecutionId,
+      (e) => e.status === RoutineExecutionStatus.IN_PROGRESS,
     );
     if (actualRoutineExecutionIndex === -1) return null;
     const previousRoutineExecution = routine.executions[actualRoutineExecutionIndex - 1];
@@ -51,7 +49,7 @@ export const PreviousExerciseExecutionProvider = ({
       weight: round(totalWeight / sets, 0.5),
       reps: round(totalReps / sets),
     };
-  }, [routine, actualRoutineExecutionId, exercise]);
+  }, [routine, exercise]);
 
   return <Context.Provider value={previousExerciseExecutionData}>{children}</Context.Provider>;
 };

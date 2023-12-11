@@ -1,6 +1,7 @@
 import { V1Store } from './1';
 
 export interface V2Store {
+  actualRoutineExecutionId: string | null;
   routines: {
     id: string;
     name: string;
@@ -28,6 +29,7 @@ export interface V2Store {
 
 export function upgradeV2(store: V1Store): V2Store {
   return {
+    ...store,
     routines: store.routines.map((routine) => ({
       ...routine,
       executions: [],

@@ -50,6 +50,7 @@ export default function AddSeriePage() {
       return null;
     addSetExecution(routine.id, routineExecution.id, exerciseExecution.id, {
       id: crypto.randomUUID(),
+      date: new Date().toISOString(),
       weight,
       reps,
     });

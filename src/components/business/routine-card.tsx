@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +8,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useStore } from '@/contexts/store';
-import { Routine, RoutineExecution } from '@/types';
+import { Routine, RoutineExecution, RoutineExecutionStatus } from '@/types';
 import { History, Pencil, Trash2 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -17,19 +18,21 @@ export interface RoutineCardProps {
 
 export default function RoutineCard({ routine }: RoutineCardProps) {
   const navigate = useNavigate();
-  const actualRoutineExecutionId = useStore((s) => s.actualRoutineExecutionId);
-  const setActualRoutineExecutionId = useStore((s) => s.setActualRoutineExecutionId);
   const addRoutineExecution = useStore((s) => s.addRoutineExecution);
 
+  const isAnExecutionInProgress = useMemo(() => {
+    return routine.executions.some((e) => e.status === RoutineExecutionStatus.IN_PROGRESS);
+  }, [routine.executions]);
+
   const handleStartRoutine = () => {
-    if (actualRoutineExecutionId) {
+    if (isAnExecutionInProgress) {
       navigate(`/execute/${routine.id}`);
       return;
     }
     const routineExecutionId = crypto.randomUUID();
-    setActualRoutineExecutionId(routineExecutionId);
     const newRoutineExecution: RoutineExecution = {
       id: routineExecutionId,
+      status: RoutineExecutionStatus.IN_PROGRESS,
       date: new Date().toISOString(),
       exercises: [],
     };
@@ -84,7 +87,7 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
                   className="w-full grow"
                   onClick={handleStartRoutine}
                 >
-                  Empezar Rutina
+                  {isAnExecutionInProgress ? 'Continuar Rutina' : 'Empezar Rutina'}
                 </Button>
               )}
             </div>

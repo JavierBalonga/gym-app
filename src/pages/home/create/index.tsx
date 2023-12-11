@@ -16,8 +16,8 @@ export default function CreatePage() {
     setTimeout(() => navigate('..'), 200);
   };
 
-  const handleSubmit = (routine: Routine) => {
-    addRoutine(routine);
+  const handleSubmit = (routine: Omit<Routine, 'executions'>) => {
+    addRoutine({ ...routine, executions: [] });
     setOpen(false);
     setTimeout(() => navigate('..'), 200);
   };

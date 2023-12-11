@@ -19,7 +19,6 @@ export default function RoutineForm({ defaultValues, onSubmit }: RoutineFormProp
       id: crypto.randomUUID(),
       name: '',
       exercises: [],
-      executions: [],
     },
   });
 

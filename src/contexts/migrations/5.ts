@@ -1,7 +1,6 @@
-import { V3Store } from './3';
+import { V4Store } from './4';
 
-export interface V4Store {
-  actualRoutineExecutionId: string | null;
+export interface V5Store {
   routines: {
     id: string;
     name: string;
@@ -15,11 +14,14 @@ export interface V4Store {
     }[];
     executions: {
       id: string;
+      status: 'IN_PROGRESS' | 'COMPLETED';
       date: string;
       exercises: {
         id: string;
+        date: string;
         sets: {
           id: string;
+          date: string;
           reps: number;
           weight: number;
         }[];
@@ -28,15 +30,25 @@ export interface V4Store {
   }[];
 }
 
-export function upgradeV4(store: V3Store): V4Store {
-  return {
+export function upgradeV5(store: V4Store): V5Store {
+  const newStore: V5Store = {
     ...store,
     routines: store.routines.map((routine) => ({
       ...routine,
       executions: routine.executions.map((execution) => ({
         ...execution,
-        exercises: execution.exercises.filter((exercise) => exercise.sets.length > 0),
+        status: 'COMPLETED',
+        exercises: execution.exercises.map((exercise) => ({
+          ...exercise,
+          date: execution.date,
+          sets: exercise.sets.map((set) => ({
+            ...set,
+            date: execution.date,
+          })),
+        })),
       })),
     })),
   };
+  delete (newStore as any).actualRoutineExecutionId;
+  return newStore;
 }

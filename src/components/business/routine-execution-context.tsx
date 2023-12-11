@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react';
-import { useStore } from '@/contexts/store';
-import { RoutineExecution } from '@/types';
+import { RoutineExecution, RoutineExecutionStatus } from '@/types';
 
 import { useRoutine } from './routine-context';
 
@@ -15,14 +14,14 @@ export interface RoutineExecutionProviderProps {
 export const RoutineExecutionProvider = ({ children }: RoutineExecutionProviderProps) => {
   const routine = useRoutine();
 
-  const actualRoutineExecutionId = useStore((s) => s.actualRoutineExecutionId);
-
   const routineExecution = useMemo(() => {
-    if (!routine || !actualRoutineExecutionId) return null;
-    const routineExecution = routine.executions.find((e) => e.id === actualRoutineExecutionId);
+    if (!routine) return null;
+    const routineExecution = routine.executions.find(
+      (e) => e.status === RoutineExecutionStatus.IN_PROGRESS,
+    );
     if (!routineExecution) return null;
     return routineExecution;
-  }, [routine, actualRoutineExecutionId]);
+  }, [routine]);
 
   return <Context.Provider value={routineExecution}>{children}</Context.Provider>;
 };

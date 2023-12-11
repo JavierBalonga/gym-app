@@ -16,6 +16,7 @@ export interface Exercise {
 
 export interface RoutineExecution {
   id: string;
+  status: RoutineExecutionStatus;
   date: string;
   exercises: ExerciseExecution[];
 }
@@ -23,11 +24,18 @@ export interface RoutineExecution {
 export interface ExerciseExecution {
   id: string;
   exerciseId: string;
+  date: string;
   sets: SetExecution[];
 }
 
 export interface SetExecution {
   id: string;
+  date: string;
   reps: number;
   weight: number;
+}
+
+export enum RoutineExecutionStatus {
+  IN_PROGRESS = 'IN_PROGRESS',
+  COMPLETED = 'COMPLETED',
 }

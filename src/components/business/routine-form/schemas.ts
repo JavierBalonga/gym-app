@@ -50,39 +50,6 @@ export const routineformSchema = z.object({
     }),
 
   exercises: z.array(excerciseSchema),
-
-  executions: z.array(
-    z.object({
-      id: z.string().uuid(),
-
-      date: z.string().datetime('La fecha de ejecución debe tener el formato YYYY-MM-DD HH:mm:ss'),
-
-      exercises: z.array(
-        z.object({
-          id: z.string().uuid(),
-
-          exerciseId: z.string().uuid(),
-
-          sets: z.array(
-            z.object({
-              id: z.string().uuid(),
-
-              reps: z
-                .number()
-                .int({
-                  message: 'El número de repeticiones debe ser un número entero.',
-                })
-                .min(1, 'Debe haber al menos una repetición.'),
-
-              weight: z.number().min(0, {
-                message: 'El peso debe ser un número positivo.',
-              }),
-            }),
-          ),
-        }),
-      ),
-    }),
-  ),
 });
 
 export type RoutineFormValues = z.infer<typeof routineformSchema>;

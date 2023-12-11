@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useExercise } from '@/components/business/exercise-context';
 import { useExerciseExecution } from '@/components/business/exercise-execution-context';
 import { usePreviousExerciseExecution } from '@/components/business/previous-exercise-execution-context';
@@ -13,8 +13,6 @@ import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
 
 export default function ExecuteExercisePage() {
   const navigate = useNavigate();
-  const actualRoutineExecutionId = useStore((s) => s.actualRoutineExecutionId);
-  const setActualRoutineExecutionId = useStore((s) => s.setActualRoutineExecutionId);
   const removeSetExecution = useStore((s) => s.removeSetExecution);
 
   const [open, setOpen] = useState(true);
@@ -29,12 +27,6 @@ export default function ExecuteExercisePage() {
     if (!exercise || !exerciseExecution) return null;
     return exercise.sets - exerciseExecution.sets.length;
   }, [exercise?.sets, exerciseExecution?.sets.length]);
-
-  useEffect(() => {
-    if (actualRoutineExecutionId === null) {
-      setActualRoutineExecutionId(crypto.randomUUID());
-    }
-  }, [actualRoutineExecutionId]);
 
   const handleRemoveSerie = (setId: string) => {
     if (!routine || !routineExecution || !exerciseExecution) return null;

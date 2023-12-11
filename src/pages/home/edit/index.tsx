@@ -19,8 +19,9 @@ export default function EditPage() {
     setTimeout(() => navigate('..'), 200);
   };
 
-  const handleSubmit = (routine: Routine) => {
-    updateRoutine(routine);
+  const handleSubmit = (updatedRoutine: Omit<Routine, 'executions'>) => {
+    if (!routine) return;
+    updateRoutine({ ...routine, ...updatedRoutine });
     setOpen(false);
     setTimeout(() => navigate('..'), 200);
   };

@@ -12,8 +12,8 @@ import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 
 export default function ExecutePage() {
   const navigate = useNavigate();
-  const setActualRoutineExecutionId = useStore((s) => s.setActualRoutineExecutionId);
   const addExerciseExecution = useStore((s) => s.addExerciseExecution);
+  const completeRoutineExecution = useStore((s) => s.completeRoutineExecution);
 
   const routine = useRoutine();
   const routineExecution = useRoutineExecution();
@@ -37,6 +37,7 @@ export default function ExecutePage() {
     const newExerciseExecution: ExerciseExecution = {
       id: crypto.randomUUID(),
       exerciseId: exercise.id,
+      date: new Date().toISOString(),
       sets: [],
     };
     addExerciseExecution(routine.id, routineExecution.id, newExerciseExecution);
@@ -46,7 +47,7 @@ export default function ExecutePage() {
   const handleFinishRoutine = () => {
     // TODO: Show modal to confirm
     if (!routine || !routineExecution) return;
-    setActualRoutineExecutionId(null);
+    completeRoutineExecution(routine.id, routineExecution.id);
     navigate('..');
   };
 

@@ -1,4 +1,10 @@
-import { ExerciseExecution, Routine, RoutineExecution, SetExecution } from '@/types';
+import {
+  ExerciseExecution,
+  Routine,
+  RoutineExecution,
+  RoutineExecutionStatus,
+  SetExecution,
+} from '@/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -9,9 +15,6 @@ export interface Store {
   addRoutine: (routine: Routine) => void;
   removeRoutine: (id: string) => void;
   updateRoutine: (routine: Routine) => void;
-
-  actualRoutineExecutionId: string | null;
-  setActualRoutineExecutionId: (id: string | null) => void;
 
   addRoutineExecution: (routineId: string, routineExecution: RoutineExecution) => void;
   addExerciseExecution: (
@@ -31,6 +34,7 @@ export interface Store {
     exerciseExecutionId: string,
     setExecutionId: string,
   ) => void;
+  completeRoutineExecution: (routineId: string, routineExecutionId: string) => void;
 }
 
 export const useStore = create(
@@ -56,14 +60,7 @@ export const useStore = create(
         }));
       },
 
-      actualRoutineExecutionId: null,
-
-      setActualRoutineExecutionId: (id) => {
-        set(() => ({ actualRoutineExecutionId: id }));
-      },
-
       addRoutineExecution: (routineId, routineExecution) => {
-        console.log('addRoutineExecution', routineExecution.id);
         set((state) => ({
           routines: state.routines.map((routine) => {
             if (routine.id !== routineId) return routine;
@@ -140,10 +137,28 @@ export const useStore = create(
           }),
         }));
       },
+
+      completeRoutineExecution: (routineId, routineExecutionId) => {
+        set((state) => ({
+          routines: state.routines.map((routine) => {
+            if (routine.id !== routineId) return routine;
+            return {
+              ...routine,
+              executions: routine.executions.map((routineExecution) => {
+                if (routineExecution.id !== routineExecutionId) return routineExecution;
+                return {
+                  ...routineExecution,
+                  status: RoutineExecutionStatus.COMPLETED,
+                };
+              }),
+            };
+          }),
+        }));
+      },
     }),
     {
       name: 'gym-storage',
-      version: 4,
+      version: 5,
       migrate: migrate,
     },
   ),
