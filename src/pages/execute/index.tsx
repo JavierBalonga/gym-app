@@ -66,6 +66,7 @@ export default function ExecutePage() {
 
           return (
             <Card
+              key={exercise.id}
               className={cn(
                 'flex flex-row items-center gap-4 px-6 py-4',
                 isComplete && 'border-success bg-success/5',

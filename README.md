@@ -5,7 +5,6 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 ## [Test It HERE](https://javierbalonga.github.io/gym-app/) 
 
 ## Backlog:
-- Mejorar como se muestra cuando hay una rutina en curso, se puede volver a la pantalla inicial y que haya una rutina en curso, deberiamos mostrar esto de algun modo
 
 - Agregar un servicio de analiticas
 
