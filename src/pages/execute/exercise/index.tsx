@@ -94,12 +94,12 @@ export default function ExecuteExercisePage() {
               {remainingSets === 1 ? 'Falta 1 Serie' : `Faltan ${remainingSets} Series`}
             </p>
           )}
-          <div className="flex flex-row gap-2 pt-4">
+          <div className="flex flex-col gap-2 pt-4">
             <Button type="button" variant="outline" className="w-full grow" onClick={handleFinish}>
               Finalizar Ejercicio
             </Button>
             <Button type="button" variant="default" className="w-full grow" asChild>
-              <Link to={`/execute/${routine.id}/${exercise.id}/add-serie`}>Agregar Serie</Link>
+              <Link to={`/execute/${routine.id}/${exercise.id}/add-serie`}>Registrar Serie</Link>
             </Button>
           </div>
         </SheetContent>

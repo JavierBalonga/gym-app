@@ -13,6 +13,8 @@ jobs:
       contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+    env:
+      VITE_GOOGLE_ANALYTICS_TRACKING_CODE: ${{ secrets.VITE_GOOGLE_ANALYTICS_TRACKING_CODE }}
 
     steps:
       - name: Checkout

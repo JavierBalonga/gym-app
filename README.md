@@ -6,7 +6,7 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 
 ## Backlog:
 
-- Agregar un servicio de analiticas
+- revisar input de numero, en particular en el de peso, no permite poner "." y tampoco permite borrar el 0 inicial
 
 - Los comentarios no estan teniendo ninguna funcion, deberiamos agregarlos a la vista de ejecucion de ese ejercicio
 - El finalizar ejercicio esta raro, porque muchas veces se quiere volver solo para saber que ejercicio sigue, entonces se le da a finalizar y se vuelve
@@ -26,4 +26,10 @@ This is a simple app to manage your gym routine. You can add routines, exercises
     - cuando se termina ena rutina
 - Modal notificacion de nuevas fetures
 - testing
+
+
+un par de comentarios más sobre la app:
+- empty state en el historial cuando esta vacío
+- que puedas borrar una ejecucion del historial
+- Si cierro el modal de cuando estoy haciendo un ejercicio, e intento ir para atrás me vuelve a abrir el modal
 

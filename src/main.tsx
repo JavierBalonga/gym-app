@@ -1,20 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-import App from './App.tsx';
+import { RouterProvider } from 'react-router-dom';
 
 import './index.css';
 
-import { BrowserRouter as Router } from 'react-router-dom';
-
 import { ThemeProvider } from './contexts/theme-provider.tsx';
+import router from './router.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
-      <Router basename="/gym-app/">
-        <App />
-      </Router>
+      <RouterProvider router={router} />
     </ThemeProvider>
   </React.StrictMode>,
 );

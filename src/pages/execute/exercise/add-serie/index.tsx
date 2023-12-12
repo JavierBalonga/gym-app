@@ -61,7 +61,7 @@ export default function AddSeriePage() {
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Agregar Serie</DialogTitle>
+          <DialogTitle>Registrar Serie</DialogTitle>
           <DialogDescription asChild>
             <div className="grid grid-cols-2">
               <span className="text-center">Peso</span>
