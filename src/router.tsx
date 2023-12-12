@@ -30,11 +30,9 @@ export const routes: RouteObject[] = [
           {
             path: '/create',
             element: (
-              <ExerciseProvider>
-                <Suspense fallback={<LoadingPage />}>
-                  <CreatePage />
-                </Suspense>
-              </ExerciseProvider>
+              <Suspense fallback={<LoadingPage />}>
+                <CreatePage />
+              </Suspense>
             ),
           },
           {
