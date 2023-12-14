@@ -102,7 +102,7 @@ function formatTimeCountdown(time: number) {
     const minutesStr = String(minutes);
     res += `${minutesStr}:`;
   }
-  if (seconds) {
+  if (minutes || seconds) {
     const secondsStr = minutes ? String(seconds).padStart(2, '0') : String(seconds);
     res += `${secondsStr}.`;
   }
