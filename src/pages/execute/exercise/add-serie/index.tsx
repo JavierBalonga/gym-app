@@ -16,6 +16,7 @@ import {
 import { WheelInput, WheelInputContent, WheelInputItem } from '@/components/ui/wheel-input';
 import { useStore } from '@/contexts/store';
 import { Link, useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 export default function AddSeriePage() {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ export default function AddSeriePage() {
     )
       return null;
     addSetExecution(routine.id, routineExecution.id, exerciseExecution.id, {
-      id: crypto.randomUUID(),
+      id: uuid(),
       date: new Date().toISOString(),
       weight,
       reps,

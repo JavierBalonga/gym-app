@@ -5,8 +5,6 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 ## [Test It HERE](https://javierbalonga.github.io/gym-app/) 
 
 ## Backlog:
-- Agregar que al finalizar el descanzo la aplicacion vibre
-
 - revisar input de numero, en particular en el de peso, no permite poner "." y tampoco permite borrar el 0 inicial
 - empty state en el historial cuando esta vacío
 - que puedas borrar una ejecucion del historial

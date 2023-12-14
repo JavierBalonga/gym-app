@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { v4 as uuid } from 'uuid';
 
 import { ExcerciseFormValues, excerciseSchema } from './schemas';
 
@@ -18,7 +19,7 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
   const form = useForm<ExcerciseFormValues>({
     resolver: zodResolver(excerciseSchema),
     defaultValues: defaultValues || {
-      id: crypto.randomUUID(),
+      id: uuid(),
       name: '',
       sets: 1,
       reps: 1,

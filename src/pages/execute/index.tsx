@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { Exercise, ExerciseExecution } from '@/types';
 import { Check, Play } from 'lucide-react';
 import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 export default function ExecutePage() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function ExecutePage() {
       return;
     }
     const newExerciseExecution: ExerciseExecution = {
-      id: crypto.randomUUID(),
+      id: uuid(),
       exerciseId: exercise.id,
       date: new Date().toISOString(),
       sets: [],

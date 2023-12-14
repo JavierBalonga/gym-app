@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { v4 as uuid } from 'uuid';
 
 import ExercisesField from './exercises-field';
 import { routineformSchema, RoutineFormValues } from './schemas';
@@ -16,7 +17,7 @@ export default function RoutineForm({ defaultValues, onSubmit }: RoutineFormProp
   const form = useForm<RoutineFormValues>({
     resolver: zodResolver(routineformSchema),
     defaultValues: defaultValues || {
-      id: crypto.randomUUID(),
+      id: uuid(),
       name: '',
       exercises: [],
     },

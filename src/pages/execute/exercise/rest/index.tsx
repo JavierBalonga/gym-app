@@ -9,7 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+const TIME_BETWEEN_ALERTS = 30000;
 
 export default function RestPage() {
   const navigate = useNavigate();
@@ -30,6 +32,8 @@ export default function RestPage() {
     let animation: number;
 
     const rest = exercise.rest || 0;
+    let nextAlertTime = 0;
+    let numberOfAlerts = 0;
     function animate() {
       animation = requestAnimationFrame(animate);
       const span = spanRef.current;
@@ -42,6 +46,18 @@ export default function RestPage() {
         span.classList.add('text-destructive');
       } else {
         span.classList.remove('text-destructive');
+      }
+
+      if (timeLeft <= nextAlertTime) {
+        navigator.vibrate(
+          numberOfAlerts === 0
+            ? [1000]
+            : numberOfAlerts === 1
+            ? [1000, 500, 1000]
+            : [1000, 500, 1000, 500, 1000],
+        );
+        nextAlertTime -= TIME_BETWEEN_ALERTS;
+        numberOfAlerts++;
       }
     }
 
@@ -56,8 +72,8 @@ export default function RestPage() {
         <DialogHeader>
           <DialogTitle>Tiempo de Descanso</DialogTitle>
           <DialogDescription asChild>
-            <div className="flex items-center justify-center">
-              <span className="font-mono text-4xl" ref={spanRef}>
+            <div className="flex items-center justify-center py-10">
+              <span className="font-mono text-5xl" ref={spanRef}>
                 {exercise?.rest}
               </span>
             </div>

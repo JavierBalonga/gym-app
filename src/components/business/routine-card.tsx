@@ -11,6 +11,7 @@ import { useStore } from '@/contexts/store';
 import { Routine, RoutineExecution, RoutineExecutionStatus } from '@/types';
 import { History, Pencil, Trash2 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
 export interface RoutineCardProps {
   routine: Routine;
@@ -29,7 +30,7 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
       navigate(`/execute/${routine.id}`);
       return;
     }
-    const routineExecutionId = crypto.randomUUID();
+    const routineExecutionId = uuid();
     const newRoutineExecution: RoutineExecution = {
       id: routineExecutionId,
       status: RoutineExecutionStatus.IN_PROGRESS,
