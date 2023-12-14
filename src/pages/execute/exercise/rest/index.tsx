@@ -22,6 +22,7 @@ export default function RestPage() {
   };
 
   const exercise = useExercise();
+  const startTime = useRef(Date.now().valueOf());
   const spanRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -29,22 +30,14 @@ export default function RestPage() {
     let animation: number;
 
     const rest = exercise.rest || 0;
-    const startTime = Date.now().valueOf();
     function animate() {
       animation = requestAnimationFrame(animate);
       const span = spanRef.current;
       if (!span) return;
-      const deltaTime = Date.now().valueOf() - startTime;
+      const deltaTime = Date.now().valueOf() - startTime.current;
       const timeLeft = rest - deltaTime;
       const isNegative = timeLeft < 0;
-      const minutes = Math.floor((Math.abs(timeLeft) / (1000 * 60)) % 60);
-      const seconds = Math.floor((Math.abs(timeLeft) / 1000) % 60);
-      const milliseconds = Math.floor((Math.abs(timeLeft) / 10) % 100);
-      const minutesStr = String(minutes);
-      const secondsStr = String(seconds).padStart(2, '0');
-      const millisecondsStr = String(milliseconds).padStart(2, '0');
-      span.innerHTML = `${isNegative ? '-' : ''}${minutesStr}:${secondsStr}.${millisecondsStr}`;
-
+      span.innerHTML = formatTimeCountdown(timeLeft);
       if (isNegative) {
         span.classList.add('text-destructive');
       } else {
@@ -71,11 +64,33 @@ export default function RestPage() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant="outline" asChild>
-            <Link to="..">Parar</Link>
+          <Button variant="outline" onClick={() => handleOpenChange(false)}>
+            Parar
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
+}
+
+function formatTimeCountdown(time: number) {
+  const isNegative = time < 0;
+  const minutes = Math.floor((Math.abs(time) / (1000 * 60)) % 60);
+  const seconds = Math.floor((Math.abs(time) / 1000) % 60);
+  const milliseconds = Math.floor((Math.abs(time) / 10) % 100);
+  let res = '';
+  if (isNegative) {
+    res += '-';
+  }
+  if (minutes) {
+    const minutesStr = String(minutes);
+    res += `${minutesStr}:`;
+  }
+  if (seconds) {
+    const secondsStr = minutes ? String(seconds).padStart(2, '0') : String(seconds);
+    res += `${secondsStr}.`;
+  }
+  const millisecondsStr = String(milliseconds).padStart(2, '0');
+  res += `${millisecondsStr}`;
+  return res;
 }
