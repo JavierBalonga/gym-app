@@ -158,7 +158,7 @@ export const useStore = create(
     }),
     {
       name: 'gym-storage',
-      version: 5,
+      version: 6,
       migrate: migrate,
     },
   ),

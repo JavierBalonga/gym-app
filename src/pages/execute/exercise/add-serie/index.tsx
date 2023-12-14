@@ -46,7 +46,14 @@ export default function AddSeriePage() {
   }, [exercise]);
 
   const handleAddSerie = () => {
-    if (!routine || !routineExecution || !exerciseExecution || weight === null || reps === null)
+    if (
+      !routine ||
+      !exercise ||
+      !routineExecution ||
+      !exerciseExecution ||
+      weight === null ||
+      reps === null
+    )
       return null;
     addSetExecution(routine.id, routineExecution.id, exerciseExecution.id, {
       id: crypto.randomUUID(),
@@ -54,7 +61,7 @@ export default function AddSeriePage() {
       weight,
       reps,
     });
-    navigate('..');
+    navigate(exercise.rest ? '../rest' : '..');
   };
 
   return (

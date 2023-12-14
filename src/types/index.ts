@@ -11,6 +11,7 @@ export interface Exercise {
   sets: number;
   reps: number;
   weight: number;
+  rest: number;
   comment: string;
 }
 

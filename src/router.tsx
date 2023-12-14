@@ -10,6 +10,7 @@ import { RoutineExecutionProvider } from './components/business/routine-executio
 import ExecutePage from './pages/execute';
 import ExecuteExercisePage from './pages/execute/exercise';
 import AddSeriePage from './pages/execute/exercise/add-serie';
+import RestPage from './pages/execute/exercise/rest';
 import HomePage from './pages/home/index.tsx';
 import LoadingPage from './pages/loading';
 import NotFoundPage from './pages/not-found.tsx';
@@ -92,6 +93,10 @@ export const routes: RouteObject[] = [
               {
                 path: '/execute/:routineId/:exerciseId/add-serie',
                 element: <AddSeriePage />,
+              },
+              {
+                path: '/execute/:routineId/:exerciseId/rest',
+                element: <RestPage />,
               },
             ],
           },

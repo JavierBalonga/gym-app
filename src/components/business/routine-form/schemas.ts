@@ -30,6 +30,15 @@ export const excerciseSchema = z.object({
     message: 'El peso debe ser un número positivo.',
   }),
 
+  rest: z
+    .number()
+    .int({
+      message: 'El tiempo de descanso debe ser un número entero.',
+    })
+    .min(0, {
+      message: 'El tiempo de descanso debe ser un número positivo.',
+    }),
+
   comment: z.string().max(512, {
     message: 'El comentario debe tener como máximo 50 caracteres.',
   }),
