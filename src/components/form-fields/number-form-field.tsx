@@ -1,3 +1,4 @@
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -26,8 +27,31 @@ export default function NumberFormField({
     <FormField
       control={control}
       name={name}
-      render={({ field: { onChange, ...field } }) => {
-        const handleChange = (newValue: number) => {
+      render={({ field: { onChange, value, ...field } }) => {
+        const [inputValue, setInputValue] = useState(String(value));
+
+        useEffect(() => {
+          const inputValueNumber = Number(inputValue);
+          if (inputValueNumber !== value) {
+            setInputValue(String(value));
+          }
+        }, [value]);
+
+        const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+          const newValue = e.target.value.replace(/[^0-9\.]/g, '');
+          setInputValue(newValue);
+          const newNumber = Number(newValue);
+          if (Number.isNaN(newNumber)) return;
+          onChange(minmax(min, newNumber, max));
+        };
+
+        const handlePlus = () => {
+          const newValue = (Number(value) ?? 0) + step;
+          onChange(minmax(min, newValue, max));
+        };
+
+        const handleMinus = () => {
+          const newValue = (Number(value) ?? 0) - step;
           onChange(minmax(min, newValue, max));
         };
 
@@ -40,7 +64,7 @@ export default function NumberFormField({
                 variant="outline"
                 size="icon"
                 type="button"
-                onClick={() => handleChange((Number(field.value) ?? 0) - step)}
+                onClick={handleMinus}
                 tabIndex={-1}
               >
                 <Minus />
@@ -48,16 +72,16 @@ export default function NumberFormField({
               <FormControl>
                 <Input
                   className="w-[5em] text-center"
-                  type="number"
                   {...field}
-                  onChange={(e) => handleChange(Number(e.target.value) || 0)}
+                  value={inputValue}
+                  onChange={handleChange}
                 />
               </FormControl>
               <Button
                 variant="outline"
                 size="icon"
                 type="button"
-                onClick={() => handleChange((Number(field.value) ?? 0) + step)}
+                onClick={handlePlus}
                 tabIndex={-1}
               >
                 <Plus />
