@@ -9,6 +9,7 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 - empty state en el historial cuando esta vacío
 - que puedas borrar una ejecucion del historial
 - revisar porque las ejecuciones anteriores a la existencia de la fecha aparecen con la fecha y hora acutal
+- Cuando es la ultima serie de un ejercio no deberia haber descanso.
 
 - Agregar canny para permitir a los usuarios reportar bugs o hacer sugerencias
 
@@ -18,6 +19,10 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 - Chart de progreso de los ejercicios
 - Al finalizar un ejercicio agregar un proceso de actualizacion de la rutina con los progresos de la ejecucion
 - Los comentarios no estan teniendo ninguna funcion, deberiamos agregarlos a la vista de ejecucion de ese ejercicio
+- Si cierro el modal de cuando estoy haciendo un ejercicio, e intento ir para atrás me vuelve a abrir el modal
+- Puede que el usuario no entienda cuando esta viendo el promedio de la ejecucion anterior
+- Puede que en algunos casos los pesos suban de a menos de 0.5kg y eso complica en el wheelinput
+- Cuando se esta en el descanso y se boloquea el celular mientras este este bloqueado no se lanza la alerta, investigar si esto se puede realizar
 - Agregar un Prompt para incentivar que la gente se descargue la app como applicacion, (preimero habria que ver cuando es el momento adecuado para mostrarlo)
 - Compartir Rutina con otros usuarios
 - Compartir Rutina ajustando los pesos a los de cada usuario
@@ -28,10 +33,3 @@ This is a simple app to manage your gym routine. You can add routines, exercises
     - cuando se termina ena rutina
 - Modal notificacion de nuevas fetures
 - testing
-
-
-un par de comentarios más sobre la app:
-- Si cierro el modal de cuando estoy haciendo un ejercicio, e intento ir para atrás me vuelve a abrir el modal
-
-Puede que el usuario no entienda cuando esta viendo el promedio de la ejecucion anterior
-Puede que en algunos casos los pesos suban de a menos de 0.5kg y eso complica en el wheelinput
