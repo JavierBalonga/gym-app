@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import { Link, Outlet } from 'react-router-dom';
 
 import { ModeToggle } from './mode-toggle';
-import ReactTracker from './ReactTracker';
 
 export default function Layout() {
   return (
@@ -21,7 +20,6 @@ export default function Layout() {
       <main className="flex grow flex-col items-center">
         <Outlet />
       </main>
-      <ReactTracker />
     </>
   );
 }
