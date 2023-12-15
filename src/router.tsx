@@ -19,6 +19,7 @@ const CreatePage = lazy(() => import('./pages/home/create'));
 const EditPage = lazy(() => import('./pages/home/edit'));
 const DeletePage = lazy(() => import('./pages/home/delete'));
 const HistoryPage = lazy(() => import('./pages/history'));
+const DeleteExecutionPage = lazy(() => import('./pages/history/delete'));
 
 export const routes: RouteObject[] = [
   {
@@ -67,6 +68,16 @@ export const routes: RouteObject[] = [
             </Suspense>
           </RoutineProvider>
         ),
+        children: [
+          {
+            path: '/history/:routineId/delete/:executionId',
+            element: (
+              <Suspense fallback={<LoadingPage />}>
+                <DeleteExecutionPage />
+              </Suspense>
+            ),
+          },
+        ],
       },
       {
         path: '/execute/:routineId',

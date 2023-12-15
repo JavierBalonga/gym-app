@@ -12,7 +12,7 @@ import { useStore } from '@/contexts/store';
 import formatDatetime from '@/lib/formatDatetime';
 import round from '@/lib/round';
 import { RoutineExecution, RoutineExecutionStatus } from '@/types';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 import emptyHistoryIllustration from '@/assets/empty-history.svg';
@@ -67,7 +67,7 @@ export default function HistoryPage() {
                   <AccordionTrigger>
                     <h5 className="text-xl font-bold">{formatDatetime(execution.date)}</h5>
                   </AccordionTrigger>
-                  <AccordionContent className="flex flex-col gap-1">
+                  <AccordionContent className="flex flex-col gap-6">
                     <ul className="flex list-decimal flex-col gap-1 pl-6">
                       {execution.exercises.map((exerciseExecution) => {
                         const { sets, exerciseId } = exerciseExecution;
@@ -97,6 +97,13 @@ export default function HistoryPage() {
                         );
                       })}
                     </ul>
+                    <div className="flex justify-end">
+                      <Button type="button" variant="outline" className="w-full" asChild>
+                        <Link to={`/history/${routine.id}/delete/${execution.id}`}>
+                          Borrar Ejecucion
+                        </Link>
+                      </Button>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -104,10 +111,7 @@ export default function HistoryPage() {
           ))
         )}
       </div>
+      <Outlet />
     </Section>
   );
-}
-
-{
-  /* <Card key={execution.id}>{formatDatetime(execution.date)}</Card> */
 }

@@ -17,6 +17,7 @@ export interface Store {
   updateRoutine: (routine: Routine) => void;
 
   addRoutineExecution: (routineId: string, routineExecution: RoutineExecution) => void;
+  removeRoutineExecution: (routineId: string, routineExecutionId: string) => void;
   addExerciseExecution: (
     routineId: string,
     routineExecutionId: string,
@@ -67,6 +68,20 @@ export const useStore = create(
             return {
               ...routine,
               executions: routine.executions.concat(routineExecution),
+            };
+          }),
+        }));
+      },
+
+      removeRoutineExecution: (routineId, routineExecutionId) => {
+        set((state) => ({
+          routines: state.routines.map((routine) => {
+            if (routine.id !== routineId) return routine;
+            return {
+              ...routine,
+              executions: routine.executions.filter(
+                (execution) => execution.id !== routineExecutionId,
+              ),
             };
           }),
         }));
