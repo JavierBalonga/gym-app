@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react';
 import round from '@/lib/round';
+import { RoutineExecutionStatus } from '@/types';
 
-import { RoutineExecutionStatus } from '../../types';
 import { useExercise } from './exercise-context';
 import { useRoutine } from './routine-context';
 

@@ -9,9 +9,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import formatTimeCountdown from '@/lib/formatTimeCountdown';
 import { useNavigate } from 'react-router-dom';
-
-import formatTimeCountdown from '../../../../lib/formatTimeCountdown';
 
 const TIME_BETWEEN_ALERTS = 30000;
 
