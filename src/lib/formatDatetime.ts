@@ -6,7 +6,8 @@ const dateFormater = new Intl.DateTimeFormat('es-ES', {
   minute: 'numeric',
 });
 
-export default function formatDatetime(date: Date | string) {
+export default function formatDatetime(date: Date | string | undefined) {
+  if (!date) return '-';
   if (typeof date === 'string') {
     date = new Date(date);
   }

@@ -12,6 +12,8 @@ import {
 import { useStore } from '@/contexts/store';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+import formatDatetime from '../../../lib/formatDatetime';
+
 export default function DeleteExecutionPage() {
   const { executionId } = useParams<{ executionId: string }>();
   const navigate = useNavigate();
@@ -39,13 +41,16 @@ export default function DeleteExecutionPage() {
     setTimeout(() => navigate('..'), 200);
   };
 
+  if (!routine || !routineExecution) return null;
+
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Eliminar?</DialogTitle>
           <DialogDescription>
-            La Ejecucion del "{routineExecution?.date}" será eliminada permanentemente.
+            La Ejecucion del "{formatDatetime(routineExecution.date)}" será eliminada
+            permanentemente.
             <br />
             Esta acción no se puede deshacer.
           </DialogDescription>
