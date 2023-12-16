@@ -173,7 +173,7 @@ export const useStore = create(
     }),
     {
       name: 'gym-storage',
-      version: 6,
+      version: 7,
       migrate: migrate,
     },
   ),
