@@ -5,9 +5,6 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 ## [Test It HERE](https://javierbalonga.github.io/gym-app/) 
 
 ## Backlog:
-- revisar porque las ejecuciones anteriores a la existencia de la fecha aparecen con la fecha y hora acutal
-- Cuando es la ultima serie de un ejercio no deberia haber descanso.
-
 - Agregar canny para permitir a los usuarios reportar bugs o hacer sugerencias
 
 - El finalizar ejercicio esta raro, porque muchas veces se quiere volver solo para saber que ejercicio sigue, entonces se le da a finalizar y se vuelve
@@ -30,3 +27,6 @@ This is a simple app to manage your gym routine. You can add routines, exercises
     - cuando se termina ena rutina
 - Modal notificacion de nuevas fetures
 - testing
+
+### Sin Priorizar:
+- Al migrar los datos genere fechas a las rutinas rompiendo su cronologia, deberia arreglar eso

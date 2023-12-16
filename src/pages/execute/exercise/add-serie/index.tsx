@@ -62,7 +62,9 @@ export default function AddSeriePage() {
       weight,
       reps,
     });
-    navigate(exercise.rest ? '../rest' : '..');
+    const thereIsNoRest = !exercise.rest;
+    const isLastSet = exerciseExecution.sets.length === exercise.sets - 1;
+    navigate(thereIsNoRest || isLastSet ? '..' : '../rest');
   };
 
   return (
