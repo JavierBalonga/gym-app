@@ -85,7 +85,7 @@ export default function ExecuteExercisePage() {
                   size="icon"
                   onClick={() => handleRemoveSerie(set.id)}
                 >
-                  <Trash2 />
+                  <Trash2 className="h-[1.2em] w-[1.2em]" />
                 </Button>
               </Card>
             ))}

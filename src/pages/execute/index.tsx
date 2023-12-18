@@ -81,7 +81,11 @@ export default function ExecutePage() {
                 </p>
               </div>
               <Button type="button" variant="outline" size="icon">
-                {isComplete ? <Check /> : <Play />}
+                {isComplete ? (
+                  <Check className="h-[1.2em] w-[1.2em]" />
+                ) : (
+                  <Play className="h-[1.2em] w-[1.2em]" />
+                )}
               </Button>
             </Card>
           );

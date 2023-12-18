@@ -68,17 +68,17 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
             <div className="flex flex-row gap-2 pt-4">
               <Button type="button" variant="outline" size="icon" asChild>
                 <Link to={`/delete/${routine.id}`}>
-                  <Trash2 />
+                  <Trash2 className="h-[1.2em] w-[1.2em]" />
                 </Link>
               </Button>
               <Button type="button" variant="outline" size="icon" asChild>
                 <Link to={`/edit/${routine.id}`}>
-                  <Pencil />
+                  <Pencil className="h-[1.2em] w-[1.2em]" />
                 </Link>
               </Button>
               <Button type="button" variant="outline" size="icon" asChild>
                 <Link to={`/history/${routine.id}`}>
-                  <History />
+                  <History className="h-[1.2em] w-[1.2em]" />
                 </Link>
               </Button>
               {routine.exercises.length > 0 && (

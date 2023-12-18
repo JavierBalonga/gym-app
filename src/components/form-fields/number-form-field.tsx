@@ -67,7 +67,7 @@ export default function NumberFormField({
                 onClick={handleMinus}
                 tabIndex={-1}
               >
-                <Minus />
+                <Minus className="h-[1.2em] w-[1.2em]" />
               </Button>
               <FormControl>
                 <Input
@@ -84,7 +84,7 @@ export default function NumberFormField({
                 onClick={handlePlus}
                 tabIndex={-1}
               >
-                <Plus />
+                <Plus className="h-[1.2em] w-[1.2em]" />
               </Button>
             </div>
             <FormMessage />

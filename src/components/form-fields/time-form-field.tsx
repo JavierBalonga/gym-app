@@ -44,7 +44,7 @@ export default function TimeFormField({
                 onClick={() => handleChange((Number(value) ?? 0) - step)}
                 tabIndex={-1}
               >
-                <Minus />
+                <Minus className="h-[1.2em] w-[1.2em]" />
               </Button>
               <FormControl>
                 <Input
@@ -61,7 +61,7 @@ export default function TimeFormField({
                 onClick={() => handleChange((Number(value) ?? 0) + step)}
                 tabIndex={-1}
               >
-                <Plus />
+                <Plus className="h-[1.2em] w-[1.2em]" />
               </Button>
             </div>
             <FormMessage />

@@ -29,7 +29,7 @@ export default function ExercisesField() {
                     onClick={() => swap(i, i - 1)}
                     disabled={i === 0}
                   >
-                    <ChevronUp />
+                    <ChevronUp className="h-[1.2em] w-[1.2em]" />
                   </Button>
                   <Button
                     type="button"
@@ -38,7 +38,7 @@ export default function ExercisesField() {
                     onClick={() => swap(i, i + 1)}
                     disabled={i === exercises.length - 1}
                   >
-                    <ChevronDown />
+                    <ChevronDown className="h-[1.2em] w-[1.2em]" />
                   </Button>
                 </div>
                 <div className="flex grow flex-col gap-2">
@@ -54,10 +54,10 @@ export default function ExercisesField() {
                     size="icon"
                     onClick={() => setEditIndex(i)}
                   >
-                    <Pencil />
+                    <Pencil className="h-[1.2em] w-[1.2em]" />
                   </Button>
                   <Button type="button" variant="outline" size="icon" onClick={() => remove(i)}>
-                    <Trash2 />
+                    <Trash2 className="h-[1.2em] w-[1.2em]" />
                   </Button>
                 </div>
               </Card>
