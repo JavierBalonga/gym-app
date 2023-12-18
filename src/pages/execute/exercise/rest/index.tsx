@@ -21,7 +21,7 @@ export default function RestPage() {
   const handleOpenChange = (open: boolean) => {
     if (open) return;
     setOpen(false);
-    setTimeout(() => navigate('..'), 200);
+    setTimeout(() => navigate('..', { replace: true }), 200);
   };
 
   const exercise = useExercise();

@@ -36,7 +36,7 @@ export default function AddSeriePage() {
   const handleOpenChange = (open: boolean) => {
     if (open) return;
     setOpen(false);
-    setTimeout(() => navigate('..'), 200);
+    setTimeout(() => navigate('..', { replace: true }), 200);
   };
 
   useEffect(() => {
@@ -64,7 +64,11 @@ export default function AddSeriePage() {
     });
     const thereIsNoRest = !exercise.rest;
     const isLastSet = exerciseExecution.sets.length === exercise.sets - 1;
-    navigate(thereIsNoRest || isLastSet ? '..' : '../rest');
+    setOpen(false);
+    setTimeout(
+      () => navigate(thereIsNoRest || isLastSet ? '..' : '../rest', { replace: true }),
+      200,
+    );
   };
 
   return (
@@ -94,8 +98,8 @@ export default function AddSeriePage() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="grid grid-cols-2">
-          <Button variant="outline" asChild>
-            <Link to="..">Cancelar</Link>
+          <Button variant="outline" onClick={() => handleOpenChange(false)}>
+            Cancelar
           </Button>
           <Button onClick={handleAddSerie}>Guardar</Button>
         </DialogFooter>

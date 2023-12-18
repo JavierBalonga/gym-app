@@ -56,8 +56,8 @@ export default function DeleteExecutionPage() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant="outline" asChild>
-            <Link to="..">Cancelar</Link>
+          <Button variant="outline" onClick={() => handleOpenChange(false)}>
+            Cancelar
           </Button>
           <Button onClick={handleDelete}>Eliminar</Button>
         </DialogFooter>

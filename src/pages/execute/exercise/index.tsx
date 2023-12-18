@@ -117,11 +117,15 @@ export default function ExecuteExercisePage() {
             )}
             {remainingSets === 0 ? (
               <Button type="button" variant="outline" className="w-full grow" asChild>
-                <Link to={`/execute/${routine.id}/${exercise.id}/add-serie`}>Registrar Serie</Link>
+                <Link to={`/execute/${routine.id}/${exercise.id}/add-serie`} replace>
+                  Registrar Serie
+                </Link>
               </Button>
             ) : (
               <Button type="button" variant="default" className="w-full grow" asChild>
-                <Link to={`/execute/${routine.id}/${exercise.id}/add-serie`}>Registrar Serie</Link>
+                <Link to={`/execute/${routine.id}/${exercise.id}/add-serie`} replace>
+                  Registrar Serie
+                </Link>
               </Button>
             )}
           </div>
