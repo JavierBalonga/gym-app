@@ -70,6 +70,7 @@ export default function ExecuteExercisePage() {
               <hr />
             </>
           )}
+          {exercise.comment && <p className="text-foreground/50">{exercise.comment}</p>}
           <div className="flex h-0 grow flex-col gap-2 overflow-auto px-4">
             {exerciseExecution?.sets.map((set, i) => (
               <Card key={set.id} className="flex flex-row items-center gap-3 py-2 pl-6 pr-2">
@@ -94,13 +95,35 @@ export default function ExecuteExercisePage() {
               {remainingSets === 1 ? 'Falta 1 Serie' : `Faltan ${remainingSets} Series`}
             </p>
           )}
-          <div className="flex flex-col gap-2 pt-4">
-            <Button type="button" variant="outline" className="w-full grow" onClick={handleFinish}>
-              Finalizar Ejercicio
-            </Button>
-            <Button type="button" variant="default" className="w-full grow" asChild>
-              <Link to={`/execute/${routine.id}/${exercise.id}/add-serie`}>Registrar Serie</Link>
-            </Button>
+          <div className="flex flex-col gap-2">
+            {remainingSets === 0 ? (
+              <Button
+                type="button"
+                variant="default"
+                className="w-full grow"
+                onClick={handleFinish}
+              >
+                Finalizar Ejercicio
+              </Button>
+            ) : (
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full grow"
+                onClick={handleFinish}
+              >
+                Volver a la Rutina
+              </Button>
+            )}
+            {remainingSets === 0 ? (
+              <Button type="button" variant="outline" className="w-full grow" asChild>
+                <Link to={`/execute/${routine.id}/${exercise.id}/add-serie`}>Registrar Serie</Link>
+              </Button>
+            ) : (
+              <Button type="button" variant="default" className="w-full grow" asChild>
+                <Link to={`/execute/${routine.id}/${exercise.id}/add-serie`}>Registrar Serie</Link>
+              </Button>
+            )}
           </div>
         </SheetContent>
       </Sheet>
