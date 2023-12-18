@@ -17,10 +17,13 @@ const buttonVariants = cva(
         link: 'text-primary underline-offset-4 hover:underline !p-0',
       },
       size: {
-        default: 'h-12 px-8 py-4 md:h-9 md:px-4 md:py-2',
-        sm: 'h-12 px-6 md:h-8 md:px-3 rounded-md text-xs',
-        lg: 'h-14 px-12 md:h-10 md:px-8 rounded-md',
+        default: 'h-12 px-6 py-4 md:h-9 md:px-4 md:py-2',
+        sm: 'h-12 px-4 md:h-8 md:px-3 text-xs',
+        lg: 'h-14 px-10 md:h-10 md:px-8',
         icon: 'h-12 w-12 text-2xl md:h-9 md:w-9 md:text-base shrink-0',
+      },
+      rounded: {
+        true: 'rounded-full',
       },
     },
     defaultVariants: {
@@ -37,10 +40,14 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, rounded, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
     return (
-      <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />
+      <Comp
+        className={cn(buttonVariants({ variant, size, rounded, className }))}
+        ref={ref}
+        {...props}
+      />
     );
   },
 );

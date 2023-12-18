@@ -10,7 +10,7 @@ export default function HelpFab() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="icon" variant="outline" className="fixed bottom-4 right-4">
+        <Button size="icon" variant="outline" className="fixed bottom-4 right-4 bg-background">
           ?
         </Button>
       </DropdownMenuTrigger>

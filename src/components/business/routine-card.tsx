@@ -85,7 +85,7 @@ export default function RoutineCard({ routine }: RoutineCardProps) {
                 <Button
                   type="button"
                   variant="default"
-                  className="w-full grow"
+                  className="w-full grow px-0"
                   onClick={handleStartRoutine}
                 >
                   {isAnExecutionInProgress ? 'Continuar Rutina' : 'Empezar Rutina'}
