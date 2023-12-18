@@ -53,17 +53,17 @@ export default function ExecuteExercisePage() {
           <div className="flex flex-row flex-wrap items-baseline justify-between gap-2 pt-6 text-foreground">
             <h3 className="text-2xl">{exercise?.name}</h3>
             <p>
-              {exercise.sets}x{exercise.reps} {exercise.weight && `${exercise.weight}Kg`}
+              {exercise.sets}x{exercise.reps} {Boolean(exercise.weight) && `${exercise.weight}Kg`}
             </p>
           </div>
           <hr />
           {previousExerciseExecutionData && (
             <>
               <div className="flex flex-row flex-wrap items-baseline justify-between gap-2 text-foreground/50">
-                <h4 className="text-md">Ejecucion anterior</h4>
+                <h4 className="text-md">Promedio de Ejecucion Anterior</h4>
                 <p>
                   {previousExerciseExecutionData.sets}x{previousExerciseExecutionData.reps}{' '}
-                  {previousExerciseExecutionData.weight &&
+                  {Boolean(previousExerciseExecutionData.weight) &&
                     `${previousExerciseExecutionData.weight}Kg`}
                 </p>
               </div>

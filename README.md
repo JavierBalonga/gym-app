@@ -5,12 +5,7 @@ This is a simple app to manage your gym routine. You can add routines, exercises
 ## [Test It HERE](https://javierbalonga.github.io/gym-app/) 
 
 ## Backlog:
-- Si cierro el modal de cuando estoy haciendo un ejercicio, e intento ir para atrás me vuelve a abrir el modal
-- Puede que el usuario no entienda cuando esta viendo el promedio de la ejecucion anterior
-
-### Miercoles 20/12
-- Agregar Auth0
-
+- Agregar Auth0 (Miercoles 20/12)
 
 - Agregar Supabase
 - Chart de progreso de los ejercicios
