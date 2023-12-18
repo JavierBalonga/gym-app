@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useStore } from '@/contexts/store';
 import { Link, Outlet } from 'react-router-dom';
 
+import HelpFab from '../../components/business/help-fab';
 import emptyRoutinesIllustration from '@/assets/empty-routines.svg';
 
 export default function HomePage() {
@@ -27,6 +28,7 @@ export default function HomePage() {
         </Button>
       </div>
       <Outlet />
+      <HelpFab />
     </Section>
   );
 }
