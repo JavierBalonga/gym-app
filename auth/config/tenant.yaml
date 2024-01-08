@@ -28,11 +28,9 @@ clients:
     token_endpoint_auth_method: client_secret_post
   - name: Metali Gym
     allowed_clients: []
-    allowed_logout_urls:
-      - http://localhost:3000
+    allowed_logout_urls: @@URLS@@
     app_type: spa
-    callbacks:
-      - http://localhost:3000
+    callbacks: @@URLS@@
     client_aliases: []
     cross_origin_auth: false
     custom_login_page_on: true
@@ -62,8 +60,7 @@ clients:
       rotation_type: rotating
     sso_disabled: false
     token_endpoint_auth_method: none
-    web_origins:
-      - http://localhost:3000
+    web_origins: @@URLS@@
 databases:
   - name: Username-Password-Authentication
     strategy: auth0

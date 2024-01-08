@@ -7,6 +7,16 @@ deploy({
     AUTH0_DOMAIN: env.AUTH0_DOMAIN,
     AUTH0_CLIENT_ID: env.AUTH0_CLIENT_ID,
     AUTH0_CLIENT_SECRET: env.AUTH0_CLIENT_SECRET,
+    AUTH0_KEYWORD_REPLACE_MAPPINGS:
+      env.MODE === "development"
+        ? {
+            ENVIRONMENT: "dev",
+            URLS: ["http://localhost:3000/gym-app/"],
+          }
+        : {
+            ENVIRONMENT: "prod",
+            URLS: ["https://javierbalonga.github.io/gym-app/"],
+          },
   },
 })
   .then(() => {

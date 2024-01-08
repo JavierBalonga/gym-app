@@ -14,7 +14,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       domain={VITE_AUTH0_DOMAIN}
       clientId={VITE_AUTH0_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: `${window.location.origin}/gym-app/`,
       }}
     >
       {children}
