@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/dialog';
 import { WheelInput, WheelInputContent, WheelInputItem } from '@/components/ui/wheel-input';
 import { useStore } from '@/contexts/store';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 export default function AddSeriePage() {

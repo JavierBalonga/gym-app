@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useStore } from '@/contexts/store';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function DeletePage() {
   const { routineId } = useParams<{ routineId: string }>();
