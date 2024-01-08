@@ -1,1 +1,0 @@
-const e=new Intl.DateTimeFormat("es-ES",{year:"numeric",month:"numeric",day:"numeric",hour:"numeric",minute:"numeric"});function n(r){return r?(typeof r=="string"&&(r=new Date(r)),e.format(r)):"-"}export{n as f};
