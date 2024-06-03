@@ -38,15 +38,12 @@ export function ThemeProvider({
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
     return theme;
-  }, [storedTheme, systemTheme]);
+  }, [storedTheme]);
 
-  const setTheme = useCallback(
-    (theme: StoredTheme) => {
-      localStorage.setItem(storageKey, theme);
-      setStoredTheme(theme);
-    },
-    [storageKey],
-  );
+  const setTheme = useCallback((theme: StoredTheme) => {
+    localStorage.setItem(storageKey, theme);
+    setStoredTheme(theme);
+  }, []);
 
   return (
     <ThemeProviderContext.Provider

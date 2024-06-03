@@ -60,7 +60,7 @@ export default function ExecuteExercisePage() {
           {previousExerciseExecution && (
             <>
               <div className="flex flex-row flex-wrap items-baseline justify-between gap-2 text-foreground/50">
-                <h4 className="text-md">Promedio de Ejecucion Anterior</h4>
+                <h4 className="text-md">Ejecucion Anterior</h4>
                 <p>
                   {previousExerciseExecution.sets
                     .map((s) => `${s.reps}${s.weight && `x${s.weight}Kg`}`)
