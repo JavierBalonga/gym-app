@@ -31,7 +31,7 @@ export default function AddSeriePage() {
   const exercise = useExercise();
   const routineExecution = useRoutineExecution();
   const exerciseExecution = useExerciseExecution();
-  const previousExerciseExecutionData = usePreviousExerciseExecution();
+  const previousExerciseExecution = usePreviousExerciseExecution();
 
   const handleOpenChange = (open: boolean) => {
     if (open) return;
@@ -42,8 +42,10 @@ export default function AddSeriePage() {
   useEffect(() => {
     if (!exercise || !exerciseExecution) return;
     const lastSet = exerciseExecution.sets[exerciseExecution?.sets.length - 1];
-    setWeight(lastSet?.weight || previousExerciseExecutionData?.weight || exercise.weight);
-    setReps(lastSet?.reps || previousExerciseExecutionData?.reps || exercise.reps);
+    const previousFirstSet = previousExerciseExecution?.sets[0];
+    setWeight(lastSet?.weight || previousFirstSet?.weight || exercise.weight);
+    setReps(lastSet?.reps || previousFirstSet?.reps || exercise.reps);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise]);
 
   const handleAddSerie = () => {

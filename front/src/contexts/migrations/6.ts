@@ -42,6 +42,7 @@ export function upgradeV6(store: V5Store): V6Store {
       })),
     })),
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   delete (newStore as any).actualRoutineExecutionId;
   return newStore;
 }

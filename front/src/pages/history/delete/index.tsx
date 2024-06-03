@@ -26,7 +26,7 @@ export default function DeleteExecutionPage() {
     const routineExecution = routine.executions.find((e) => e.id === executionId);
     if (!routineExecution) return null;
     return routineExecution;
-  }, [routine]);
+  }, [routine, executionId]);
 
   const handleOpenChange = (open: boolean) => {
     if (open) return;

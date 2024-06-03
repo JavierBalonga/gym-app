@@ -33,6 +33,7 @@ export function upgradeV2(store: V1Store): V2Store {
     routines: store.routines.map((routine) => ({
       ...routine,
       executions: [],
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       exercises: routine.exercises.map(({ executions, ...exercise }) => exercise),
     })),
   };

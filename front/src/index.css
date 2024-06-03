@@ -77,22 +77,21 @@
     @apply border-border;
   }
 
-  
   /* Hide up/down arrows in number inputs */
   /*   in Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
   }
   /*   in Firefox */
   input[type='number'] {
-      appearance: textfield;
-      -moz-appearance: textfield;
+    appearance: textfield;
+    -moz-appearance: textfield;
   }
 
   body {
-    @apply flex !min-h-[100svh] min-h-screen w-full flex-row bg-background text-foreground overflow-x-hidden overscroll-contain;
+    @apply flex !min-h-[100svh] min-h-screen w-full flex-row overflow-x-hidden overscroll-contain bg-background text-foreground;
   }
 
   #root {

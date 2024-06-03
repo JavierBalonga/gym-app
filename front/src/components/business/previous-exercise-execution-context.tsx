@@ -1,17 +1,10 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react';
-import round from '@/lib/round';
-import { RoutineExecutionStatus } from '@/types';
+import { ExerciseExecution, RoutineExecutionStatus } from '@/types';
 
 import { useExercise } from './exercise-context';
 import { useRoutine } from './routine-context';
 
-export interface PreviousExerciseExecutionData {
-  sets: number;
-  weight: number;
-  reps: number;
-}
-
-const Context = createContext<PreviousExerciseExecutionData | null | 'NOT_INSIDE_PROVIDER'>(
+const Context = createContext<ExerciseExecution | null | 'NOT_INSIDE_PROVIDER'>(
   'NOT_INSIDE_PROVIDER',
 );
 
@@ -25,7 +18,7 @@ export const PreviousExerciseExecutionProvider = ({
   const routine = useRoutine();
   const exercise = useExercise();
 
-  const previousExerciseExecutionData = useMemo(() => {
+  const previousExerciseExecution = useMemo(() => {
     if (!routine || !exercise) return null;
     const actualRoutineExecutionIndex = routine.executions.findIndex(
       (e) => e.status === RoutineExecutionStatus.IN_PROGRESS,
@@ -36,22 +29,10 @@ export const PreviousExerciseExecutionProvider = ({
     const previousExerciseExecution = previousRoutineExecution.exercises.find(
       (e) => e.exerciseId === exercise.id,
     );
-    if (!previousExerciseExecution) return null;
-    const sets = previousExerciseExecution.sets.length;
-    let totalWeight = 0;
-    let totalReps = 0;
-    previousExerciseExecution.sets.forEach((set) => {
-      totalWeight += set.weight;
-      totalReps += set.reps;
-    });
-    return {
-      sets: sets,
-      weight: round(totalWeight / sets, 0.5),
-      reps: round(totalReps / sets),
-    };
+    return previousExerciseExecution || null;
   }, [routine, exercise]);
 
-  return <Context.Provider value={previousExerciseExecutionData}>{children}</Context.Provider>;
+  return <Context.Provider value={previousExerciseExecution}>{children}</Context.Provider>;
 };
 
 export const usePreviousExerciseExecution = () => {

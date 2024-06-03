@@ -27,7 +27,7 @@ export default function NumberFormField({
     <FormField
       control={control}
       name={name}
-      render={({ field: { onChange, value, ...field } }) => {
+      render={function NumberFormFieldRender({ field: { onChange, value, ...field } }) {
         const [inputValue, setInputValue] = useState(String(value));
 
         useEffect(() => {
@@ -35,10 +35,11 @@ export default function NumberFormField({
           if (inputValueNumber !== value) {
             setInputValue(String(value));
           }
+          // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [value]);
 
         const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-          const newValue = e.target.value.replace(/[^0-9\.]/g, '');
+          const newValue = e.target.value.replace(/[^0-9.]/g, '');
           setInputValue(newValue);
           const newNumber = Number(newValue);
           if (Number.isNaN(newNumber)) return;

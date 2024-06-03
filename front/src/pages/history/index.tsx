@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useStore } from '@/contexts/store';
 import formatDatetime from '@/lib/formatDatetime';
-import round from '@/lib/round';
 import { RoutineExecution, RoutineExecutionStatus } from '@/types';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
@@ -72,16 +71,6 @@ export default function HistoryPage() {
                       {execution.exercises.map((exerciseExecution) => {
                         const { sets, exerciseId } = exerciseExecution;
                         const exercise = routine.exercises.find((e) => e.id === exerciseId);
-                        let totalWeight = 0;
-                        let totalReps = 0;
-                        sets.forEach((set) => {
-                          totalWeight += set.weight;
-                          totalReps += set.reps;
-                        });
-                        const avgWeight = sets.length
-                          ? round(totalWeight / sets.length, 0.5)
-                          : null;
-                        const avgReps = sets.length ? round(totalReps / sets.length) : null;
                         return (
                           <li
                             key={exerciseExecution.id}
@@ -90,7 +79,9 @@ export default function HistoryPage() {
                             <h5 className="text-lg">{exercise?.name}</h5>
                             <p className="text-foreground/50">
                               {sets.length
-                                ? `${sets.length}x${avgReps} ${avgWeight && `${avgWeight}Kg`}`
+                                ? sets
+                                    .map((s) => `${s.reps} ${s.weight && `${s.weight}Kg`}`)
+                                    .join(' | ')
                                 : 'No hay ningún set'}
                             </p>
                           </li>

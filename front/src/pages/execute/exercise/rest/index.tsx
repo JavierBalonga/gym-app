@@ -65,6 +65,7 @@ export default function RestPage() {
     animation = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animation);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise?.rest]);
 
   return (

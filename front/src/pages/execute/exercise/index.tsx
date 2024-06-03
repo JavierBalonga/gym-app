@@ -21,11 +21,12 @@ export default function ExecuteExercisePage() {
   const routineExecution = useRoutineExecution();
   const exercise = useExercise();
   const exerciseExecution = useExerciseExecution();
-  const previousExerciseExecutionData = usePreviousExerciseExecution();
+  const previousExerciseExecution = usePreviousExerciseExecution();
 
   const remainingSets = useMemo(() => {
     if (!exercise || !exerciseExecution) return null;
     return exercise.sets - exerciseExecution.sets.length;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise?.sets, exerciseExecution?.sets.length]);
 
   const handleRemoveSerie = (setId: string) => {
@@ -57,14 +58,14 @@ export default function ExecuteExercisePage() {
             </p>
           </div>
           <hr />
-          {previousExerciseExecutionData && (
+          {previousExerciseExecution && (
             <>
               <div className="flex flex-row flex-wrap items-baseline justify-between gap-2 text-foreground/50">
                 <h4 className="text-md">Promedio de Ejecucion Anterior</h4>
                 <p>
-                  {previousExerciseExecutionData.sets}x{previousExerciseExecutionData.reps}{' '}
-                  {Boolean(previousExerciseExecutionData.weight) &&
-                    `${previousExerciseExecutionData.weight}Kg`}
+                  {previousExerciseExecution.sets
+                    .map((s) => `${s.reps} ${s.weight && `${s.weight}Kg`}`)
+                    .join(' | ')}
                 </p>
               </div>
               <hr />
