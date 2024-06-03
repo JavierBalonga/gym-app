@@ -83,14 +83,14 @@ export default function AddSeriePage() {
               <span className="text-center">Repeticiones</span>
               <WheelInput<number> value={weight ?? 0} onChange={setWeight}>
                 <WheelInputContent>
-                  {Array.from({ length: 200 }, (_, i) => (
+                  {Array.from({ length: 2000 }, (_, i) => (
                     <WheelInputItem key={i} value={i / 2} />
                   ))}
                 </WheelInputContent>
               </WheelInput>
               <WheelInput<number> value={reps ?? 0} onChange={setReps}>
                 <WheelInputContent>
-                  {Array.from({ length: 9999 }, (_, i) => (
+                  {Array.from({ length: 99 }, (_, i) => (
                     <WheelInputItem key={i} value={i + 1} />
                   ))}
                 </WheelInputContent>

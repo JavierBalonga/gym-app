@@ -44,8 +44,8 @@ export default function ExcerciseForm({ defaultValues, onSubmit }: ExcerciseForm
       >
         <TextFormField name="name" label="Nombre" placeholder="Mi Ejercicio..." />
         <NumberFormField name="sets" label="Series" min={1} max={99} />
-        <NumberFormField name="reps" label="Repeticiones" min={1} max={999} />
-        <NumberFormField name="weight" label="Peso" min={0} step={0.5} max={9999} />
+        <NumberFormField name="reps" label="Repeticiones" min={1} max={99} />
+        <NumberFormField name="weight" label="Peso" min={0} step={0.5} max={1000} />
         <TimeFormField name="rest" label="Descanso" min={0} step={15000} max={600000} />
         <TextareaFormField name="comment" label="Comentario" />
         <div className="grow" />
