@@ -26,7 +26,6 @@ export default function ExecuteExercisePage() {
   const remainingSets = useMemo(() => {
     if (!exercise || !exerciseExecution) return null;
     return exercise.sets - exerciseExecution.sets.length;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise?.sets, exerciseExecution?.sets.length]);
 
   const handleRemoveSerie = (setId: string) => {
@@ -64,7 +63,7 @@ export default function ExecuteExercisePage() {
                 <h4 className="text-md">Promedio de Ejecucion Anterior</h4>
                 <p>
                   {previousExerciseExecution.sets
-                    .map((s) => `${s.reps} ${s.weight && `${s.weight}Kg`}`)
+                    .map((s) => `${s.reps}${s.weight && `x${s.weight}Kg`}`)
                     .join(' | ')}
                 </p>
               </div>

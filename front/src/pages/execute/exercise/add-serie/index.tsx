@@ -45,7 +45,6 @@ export default function AddSeriePage() {
     const previousFirstSet = previousExerciseExecution?.sets[0];
     setWeight(lastSet?.weight || previousFirstSet?.weight || exercise.weight);
     setReps(lastSet?.reps || previousFirstSet?.reps || exercise.reps);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise]);
 
   const handleAddSerie = () => {

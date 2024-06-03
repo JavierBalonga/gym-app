@@ -23,7 +23,7 @@ export const ExerciseExecutionProvider = ({ children }: ExerciseExecutionProvide
     const exerciseExecution = routineExecution.exercises.find((e) => e.exerciseId === exercise.id);
     if (!exerciseExecution) return null;
     return exerciseExecution;
-  }, [routine, routineExecution, exercise]);
+  }, [routineExecution, exercise]);
 
   return <Context.Provider value={exerciseExecution}>{children}</Context.Provider>;
 };

@@ -134,7 +134,6 @@ export function WheelInputItem({ value, className, children, ...props }: WheelIn
   useEffect(() => {
     if (index === null) return;
     registerItem(index, value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, value]);
 
   useEffect(() => {

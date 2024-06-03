@@ -80,7 +80,7 @@ export default function HistoryPage() {
                             <p className="text-foreground/50">
                               {sets.length
                                 ? sets
-                                    .map((s) => `${s.reps} ${s.weight && `${s.weight}Kg`}`)
+                                    .map((s) => `${s.reps}${s.weight && `x${s.weight}Kg`}`)
                                     .join(' | ')
                                 : 'No hay ningún set'}
                             </p>

@@ -26,7 +26,6 @@ export default function ExecutePage() {
       if (!exerciseExecution) return false;
       return exerciseExecution.sets.length === exercise.sets;
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routine?.exercises, routineExecution?.exercises]);
 
   const handleClickExercise = (exercise: Exercise) => {

@@ -35,7 +35,6 @@ export default function NumberFormField({
           if (inputValueNumber !== value) {
             setInputValue(String(value));
           }
-          // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [value]);
 
         const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
