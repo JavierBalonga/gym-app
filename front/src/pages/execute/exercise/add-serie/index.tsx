@@ -89,7 +89,7 @@ export default function AddSeriePage() {
               </WheelInput>
               <WheelInput<number> value={reps ?? 0} onChange={setReps}>
                 <WheelInputContent>
-                  {Array.from({ length: 99 }, (_, i) => (
+                  {Array.from({ length: 9999 }, (_, i) => (
                     <WheelInputItem key={i} value={i + 1} />
                   ))}
                 </WheelInputContent>
